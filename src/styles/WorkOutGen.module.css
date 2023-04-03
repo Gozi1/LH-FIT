@@ -1,0 +1,24 @@
+.work-out-gen{
+  display: flex;
+  flex-direction: column;
+}
+.difficulty-container{
+  display: flex;
+  flex-direction: row;
+  gap: 3rem
+}
+.difficuly-button-unselected{
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border: 3px solid gray;
+  cursor: pointer;
+  outline: none;
+}
+.difficuly-button-unselected:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+  background-color: rgb(38, 36, 128);
+}
