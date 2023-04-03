@@ -24,8 +24,16 @@ const WorkOutGen = () => {
         className={params.difficulty === 'beginner'?styles['difficuly-button-unselected']:styles['difficuly-button-selected']}>
           Beginner
           </button>
-        <button>Intermediate</button>
-        <button>Expert</button>
+        <button
+        onClick={()=>
+          {params.difficulty === 'intermediate' ? 
+          handleParams('difficulty',''):handleParams('difficulty','intermediate')}}
+        className={params.difficulty === 'intermediate'?styles['difficuly-button-unselected']:styles['difficuly-button-selected']} >Intermediate</button>
+        <button
+        onClick={()=>
+          {params.difficulty === 'expert' ? 
+          handleParams('difficulty',''):handleParams('difficulty','expert')}}
+        className={params.difficulty === 'expert'?styles['difficuly-button-unselected']:styles['difficuly-button-selected']}>Expert</button>
       </div>
     </div>
   )
