@@ -1,0 +1,155 @@
+
+
+  $border-size: 0.125rem;
+  $duration: 250ms;
+  $ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+  $font-family: monospace;
+  $color-primary: white;
+  $color-secondary: black;
+  $color-tertiary: dodgerblue;
+  $shadow: rgba(0, 0, 0, 0.1);
+  $space: 1rem;
+
+.work-out-gen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.work-out-container-difficulty{
+  display: flex;
+  width: 700px;
+  box-shadow: $shadow 4px 4px;
+}
+.work-out-container-type{
+  display: flex;
+  width: 700px;
+  box-shadow: $shadow 4px 4px;
+}
+.button{
+  flex-grow: 1;
+  cursor: pointer;
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  border: $border-size solid black;
+  color: $color-secondary;
+  background-color: $color-primary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  transition: flex-grow $duration $ease;
+}
+
+.work-out-container-type .button + button {
+  border-left: $border-size solid black;
+  margin-left: calc($border-size * -1);
+}
+.button:hover,
+.focus {
+  flex-grow: 2;
+  cursor: pointer;
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  color: white;
+  outline: none;
+  text-shadow: none;
+  background-color: $color-secondary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  transition: flex-grow $duration $ease;
+}
+.focus {
+  outline: $border-size dashed $color-primary;
+  outline-offset: calc($border-size * -3);
+}
+.work-out-container-type:hover  .focus:not(:hover) {
+  flex-grow: 1;
+  color: $color-secondary;
+  background-color: $color-primary;
+  outline-color: $color-tertiary;
+}
+.work-out-container-type .button:active {
+  transform: translateY($border-size);
+}
+
+.work-out-container-difficult .button + button {
+  border-left: $border-size solid black;
+  margin-left: calc($border-size * -1);
+}
+.button:hover,
+ .focus {
+  flex-grow: 2;
+  color: white;
+  outline: none;
+  text-shadow: none;
+  background-color: $color-secondary;
+}
+.focus {
+  outline: $border-size dashed $color-primary;
+  outline-offset: calc($border-size * -3);
+}
+.work-out-container-difficulty:hover  .focus:not(:hover) {
+  flex-grow: 1;
+  color: $color-secondary;
+  background-color: $color-primary;
+  outline-color: $color-tertiary;
+}
+.work-out-container-difficulty .button:active {
+  transform: translateY($border-size);
+}
+
+.submit{
+  cursor: pointer;
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  border: $border-size solid black;
+  color: $color-secondary;
+  background-color: $color-primary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  width: 600px;
+  transition: width ease-in 0.3s;
+}
+
+
+.submit:active {
+  transform: translateY($border-size);
+}
+.submit:hover{
+  color: white;
+  outline: none;
+  text-shadow: none;
+  background-color: $color-secondary;
+  width: 700px;
+  transition: width ease-in 0.3s;
+}
+
+.work-out-container-muscle{
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  border: $border-size solid black;
+  color: $color-secondary;
+  background-color: $color-primary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  width: 700px;
+  
+}
+.work-out-container-muscle:hover{
+  background-color: $color-secondary;
+  color: $color-primary;
+}
