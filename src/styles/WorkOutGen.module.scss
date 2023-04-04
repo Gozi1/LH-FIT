@@ -134,7 +134,7 @@
   transition: width ease-in 0.3s;
 }
 
-.work-out-container-muscle select{
+.work-out-container-muscle{
   position: relative;
   padding:
     calc($space / 1.125)
@@ -149,7 +149,7 @@
   width: 700px;
   
 }
-.work-out-container-muscle *:hover{
+.work-out-container-muscle:hover{
   background-color: $color-secondary;
   color: $color-primary;
 }

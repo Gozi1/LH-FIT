@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react'
 import styles from '../styles/WorkOutGen.module.scss'
 import Button from './Button'
@@ -16,6 +15,9 @@ const WorkOutGen = () => {
                 [objectKey]: Value.toLowerCase()
             }));
   }
+
+  console.log(params);
+
   return (
     <div className={styles['work-out-gen']}>
       <div className={styles['work-out-container-difficulty']}>
@@ -23,7 +25,6 @@ const WorkOutGen = () => {
         <Button name = 'Intermediate'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
         <Button name = 'Expert'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
       </div>
-
       <div className={styles['work-out-container-type']}> 
       <Button name = 'Strength'  keyName = 'type' handleParams = {handleParams}params = {params}/>
       <Button name = 'Endurance'  keyName = 'type' handleParams = {handleParams}params = {params}/>

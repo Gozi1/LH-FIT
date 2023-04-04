@@ -8,8 +8,8 @@ const MuscleContainer = (props) => {
       handleParams('muscleGroup',event.target.value)
   }
   return (
-   <div className={styles['work-out-container-muscle']}>
-  <select onChange={onOptionChangeHandler} required>
+   
+  <select  className={styles['work-out-container-muscle']} onChange={onOptionChangeHandler} required>
   <option key ='' hidden>Please choose one Muscle Group</option>
   {options.map((option, index) => {
       return <option key = {index} >
@@ -17,7 +17,6 @@ const MuscleContainer = (props) => {
       </option>
   })}
 </select>
-</div>
   )
 }
 
