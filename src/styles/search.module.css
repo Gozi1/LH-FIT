@@ -1,6 +1,6 @@
 .search-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 
 }
@@ -16,8 +16,6 @@
   border-top: none;
   border-left: none;
   border-right: none;
-
-
 }
 .search-button {
   display: inline-block;
@@ -28,14 +26,15 @@
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #4CAF50;
+  background-color: black;
   border: none;
   border-radius: 10px;
   box-shadow: 0 3px #999;
 }
 
 .search-button:hover {
-    background-color: #3e8e41;
+    background-color: white;
+    color: black;
     box-shadow: 0 5px #666;
     transform: translateY(1px);
   }
