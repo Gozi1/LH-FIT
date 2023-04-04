@@ -81,5 +81,16 @@
 }
 
 .footer{
-  
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    min-height: 4rem;
+    width: 100vw;
+    margin-top: 40px;
+    color: #fff;
 }
