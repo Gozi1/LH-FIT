@@ -23,7 +23,6 @@ const WorkOutGen = () => {
         <Button name = 'Intermediate'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
         <Button name = 'Expert'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
       </div>
-
       <div className={styles['work-out-container-type']}> 
       <Button name = 'Strength'  keyName = 'type' handleParams = {handleParams}params = {params}/>
       <Button name = 'Endurance'  keyName = 'type' handleParams = {handleParams}params = {params}/>
