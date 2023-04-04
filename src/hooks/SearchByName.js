@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function SearchByMuscle() {
+export default function SearchByName() {
 
   const [params,setParams] = useState({
-    difficulty: '',
-    type:'',
+    name: 'push',
+    difficulty: "beginner",
+    type:"strongman",
     muscle: "biceps",
     numberOfExercises:6,
     exercises: []
@@ -15,7 +16,7 @@ export default function SearchByMuscle() {
     const options = {
       method: 'GET',
       url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
-      params: {muscle: params.muscle},
+      params: {name: params.name},
       headers: {
         'X-RapidAPI-Key': '87b5ef7ecemsh3744aa57e06b7f7p1b5fffjsn04eef49b9efc',
         'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
