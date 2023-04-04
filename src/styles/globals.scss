@@ -20,10 +20,16 @@
   align-items: center;
   svg{
     font-size: 2rem;
+    border: 1px solid transparent;
+    border-radius: 5rem;
+  }
+  svg:hover{
+    background-color: #000;
+    color: #fff;
   }
   li:hover{
     color: white;
-    background-color: black;
+    background-color: #000;
   }
 }
 .mobile-icon{
@@ -52,7 +58,7 @@
   }
   li:hover{
     color: white;
-    background-color: black;
+    background-color: #000;
   }
 }
 
