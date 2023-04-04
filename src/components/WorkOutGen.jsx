@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react'
 import styles from '../styles/WorkOutGen.module.scss'
 import Button from './Button'
@@ -16,6 +15,9 @@ const WorkOutGen = () => {
                 [objectKey]: Value.toLowerCase()
             }));
   }
+
+  console.log(params);
+
   return (
     <div className={styles['work-out-gen']}>
       <div className={styles['work-out-container-difficulty']}>
