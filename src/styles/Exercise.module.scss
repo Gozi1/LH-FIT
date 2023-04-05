@@ -1,0 +1,26 @@
+.current-exercise-container{
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+.current-exercise-container:hover{
+  color:white;
+  background-color: black;
+}
+.current-exercise-container article{
+  transition: all 0.3s ease-in;
+
+}
+.instruction-hide{
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+}
+.instruction-show{
+  visibility: visible;
+  opacity: 1;
+  max-height: 700px;
+  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+}

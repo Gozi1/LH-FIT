@@ -2,13 +2,24 @@ import { useState } from 'react'
 import styles from '../styles/WorkOutGen.module.scss'
 import Button from './Button'
 import MuscleContainer from './MuscleContainer'
+import { useRouter } from 'next/router'
+
+//props need (setCurrentParams)
+// we choose a couple of params based on the user
+
 const WorkOutGen = () => {
+  const { push } = useRouter();
   const [params,setParams] = useState({
     difficulty: '',
     type:'',
     muscleGroup: '',
     numberOfExercises:6
   })
+  const handleSubmit = () =>{
+    //change globalcurrent params to this params 
+    // redirect page to the show my exercises page 
+    push('/my-workout')
+  }
   const handleParams = (objectKey,Value) =>{
     setParams(prevState => ({
                 ...prevState,
@@ -35,7 +46,8 @@ const WorkOutGen = () => {
       <div className={styles['equipment-container']}></div> */}
       <MuscleContainer handleParams = {handleParams} />  
       <br/>   
-      <button className={styles['submit']}>Submit</button>
+      <button className={styles['submit']} onClick={handleSubmit}>Submit</button>
+      {/* make an error page if user choose nothing */}
     </div>
   )
 }
