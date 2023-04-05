@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/Exercise.module.scss'
 import { useState } from 'react'
-import { BsPatchMinus,BsPatchPlus } from "react-icons/bs";
+import { BsPatchMinus,BsPatchPlus,BsCaretDown } from "react-icons/bs";
 const CurrentExerciseItem = (props) => {
   const {name, 
     sets, 
@@ -21,7 +21,7 @@ const CurrentExerciseItem = (props) => {
   })
   const [toggleInstruction,setToggleInstruction] = useState(false)
   return (
-    <div className={styles['current-exercise-container']} onClick={()=>{setToggleInstruction(!toggleInstruction)}}>
+    <div className={styles['current-exercise-container']} >
       <div className = {styles['exercise-positioner']}>
       <h3>{name}</h3> 
       {onAdd && 
@@ -35,14 +35,17 @@ const CurrentExerciseItem = (props) => {
       <p>Equipment Needed: {equipment}</p>
       </div>
       <div className={styles['set-reps-container']}>  
-        <p>Sets : {sets}</p>
-        <p>Reps : {reps}</p> 
+        <p>Total Sets : {sets}</p>
+        <p>Target Reps : {reps}</p> 
       </div>
       </div>
-      
+      <div className={styles['instructions-container']}>
+
+      <BsCaretDown className={toggleInstruction&&styles['svg-flipper']}onClick={()=>{setToggleInstruction(!toggleInstruction)}} />
        <article className = {toggleInstruction? styles['instruction-show']:styles['instruction-hide']} >
         {instructionHtml}
       </article>
+      </div>
       </div>
       
   )
