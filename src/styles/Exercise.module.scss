@@ -3,6 +3,21 @@
   display: flex;
   flex-direction: column;
   font-family: 'Poppins', sans-serif;
+  // remove in place of flex box in the exercise list 
+  padding: 0 2rem;
+  width: 750px
+}
+.current-exercise-container button{
+  z-index: 50;
+  font-size: 5rem;
+  font-size: 2rem;
+  border: 1px solid transparent;
+  border-radius: 5rem;
+  
+  :hover{
+    background-color: #ee0000;
+    color: #fff;
+  }
 }
 .current-exercise-container:hover{
   color:white;
@@ -15,7 +30,7 @@
 .instruction-hide{
   visibility: hidden;
   opacity: 0;
-  max-height: 0;
+  max-height: 1px;
   transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
 }
 .instruction-show{
@@ -23,4 +38,11 @@
   opacity: 1;
   max-height: 700px;
   transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+}
+.exercise-positioner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  margin: 0.5rem 0;
 }

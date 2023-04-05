@@ -31,11 +31,14 @@ const WorkOutGen = () => {
 
   return (
     <div className={styles['work-out-gen']}>
+      <h1>Choose your difficulty</h1>
       <div className={styles['work-out-container-difficulty']}>
         <Button name = 'Beginner'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
         <Button name = 'Intermediate'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
         <Button name = 'Expert'  keyName = 'difficulty' handleParams = {handleParams}params = {params}/>
       </div>
+      <br/>
+      <h1>What is your goal ?</h1>
       <div className={styles['work-out-container-type']}> 
       <Button name = 'Strength'  keyName = 'type' handleParams = {handleParams}params = {params}/>
       <Button name = 'Endurance'  keyName = 'type' handleParams = {handleParams}params = {params}/>
@@ -44,7 +47,10 @@ const WorkOutGen = () => {
       {/*
       Stretch Feature maybe .... 
       <div className={styles['equipment-container']}></div> */}
-      <MuscleContainer handleParams = {handleParams} />  
+      <br/>
+      <h1>Select the muscle you would like to work on </h1>
+      <MuscleContainer handleParams = {handleParams} /> 
+      <br/> 
       <br/>   
       <button className={styles['submit']} onClick={handleSubmit}>Submit</button>
       {/* make an error page if user choose nothing */}
