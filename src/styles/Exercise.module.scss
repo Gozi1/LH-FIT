@@ -1,0 +1,70 @@
+.current-exercise-container{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  // remove in place of flex box in the exercise list 
+  padding: 0 2rem;
+  width: 750px
+}
+.current-exercise-container button{
+  z-index: 50;
+  font-size: 5rem;
+  font-size: 2rem;
+  border: 1px solid transparent;
+  border-radius: 5rem;
+  
+  
+}
+.exercise-positioner>svg{
+  font-size: 1rem;
+  
+}
+.exercise-positioner>svg:hover{
+  color: grey;
+}
+
+.current-exercise-container article{
+  transition: all 0.3s ease-in;
+
+}
+.instruction-hide{
+  visibility: hidden;
+  opacity: 0;
+  max-height: 1px;
+  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+}
+.instruction-show{
+  visibility: visible;
+  opacity: 1;
+  max-height: 700px;
+  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+}
+.exercise-positioner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  margin: 0.2rem 0;
+}
+.instructions-container{
+  border-top: 2px solid black;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  svg{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    transition: all ease 0.5s;
+  }
+  svg:hover {
+    color: gray;
+  }
+}
+.svg-flipper{
+  transform: rotate(180deg);
+  transition: all ease 0.5s;
+}

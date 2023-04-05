@@ -1,4 +1,6 @@
 import Search from "../hooks/Search";
+import ExerciseList from "@/components/ExerciseList";
+
 function HomePage() {
 
 
@@ -6,7 +8,9 @@ function HomePage() {
   return (
     <div>
       <p>Search bar</p>
-      {(params.exercises).map((exercise, i) => <div key={i}>{exercise.name}</div>)}
+      <ExerciseList exercises = {params.exercises} onRemove = {()=>console.log('hello')}/>
+      
+      {/* another list to show search results will the onAdd prop */}
       <p>Works to add </p>
     </div>
   );
