@@ -23,6 +23,7 @@ model Exercise {
   name         String    @unique
   type         String?
   muscle       String?
+  equipment    String?
   difficulty   String?
   instructions String?
   routine      Routine[]
