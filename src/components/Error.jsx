@@ -4,7 +4,7 @@ const Error = (props) => {
   const {message,onCancel} = props
   return (
     <aside className = 'error'>
-      <p>{message}</p>
+      <p>Error: {message}</p>
       <BsX onClick = {()=>onCancel(null)}/>
       </aside>
   )
