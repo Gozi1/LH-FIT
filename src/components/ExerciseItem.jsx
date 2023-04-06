@@ -15,10 +15,10 @@ const CurrentExerciseItem = (props) => {
 
   const instructionHtml = instructions.split(',').map((sentence,index)=>{
     return (
-    <>
+    <div key={index}>
     <p>{index+1}. {sentence}</p>
     <br/>
-    </>)
+    </div>)
   })
   const [toggleInstruction,setToggleInstruction] = useState(false)
   return (

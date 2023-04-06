@@ -74,8 +74,10 @@ function HomePage() {
 	}
 
 	const handleAdd = (exercise) => {
+		console.log("HANDLE ADD EXERCISE", exercise)
 		setExercises((prev) => [...prev, exercise]) 
 	}
+
 	return (
     
 		<div className = {styles['page-layout']}>
@@ -89,7 +91,8 @@ function HomePage() {
 			/>
 			{showResults && (
 				<div className={styles['work-out-search-div']}>
-					<SearchBar exercises={exercises} params={params} setParams={setParams} />
+					<SearchBar exercises={exercises} params={params} setParams={setParams} onAdd={handleAdd}/>
+					
 					<BsCaretDown
 						className={
 							!show && styles['work-out-flipper']}
