@@ -18,7 +18,7 @@ const navbar = () => {
         }
       }
       document.addEventListener('mousedown',handler)
-  });
+  },[mobileMenu]);
 	return (
 		<nav className='nav'>
 			<div className='mobile-menu' ref={menuRef}>
