@@ -40,10 +40,17 @@ const navbar = () => {
 					{cookies.user && <li>Hello {cookies.user}!</li>}
 					<li
 						onClick={() => {
-							router.push('/search');
+							router.push('/explore');
 						}}
 					>
 						Explore
+					</li>
+					<li
+						onClick={() => {
+							router.push('/my-routines');
+						}}
+					>
+						My Routines
 					</li>
 					<li
 						onClick={() => {
