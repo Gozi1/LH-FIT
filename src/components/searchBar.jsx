@@ -6,7 +6,6 @@ const SearchBar = () => {
   // search to api
   // get a varible that saves whats in search bar
   // make a function that handles submit request/takes response data (search by name - stretch)
-  // 
 
   const [params, setParams] = useState({
     difficulty: "beginner",
