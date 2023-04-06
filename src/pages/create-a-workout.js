@@ -1,7 +1,7 @@
 import ExerciseList from '@/components/ExerciseList';
 import WorkOutGen from '../components/WorkOutGen';
 import styles from '../styles/WorkOutGen.module.scss';
-import SearchBar from '@/components/searchBar';
+import SearchBar from '@/components/SearchBar';
 import { BsCaretDown } from "react-icons/bs";
 import { useEffect, useState } from 'react';
 function HomePage() {
@@ -76,7 +76,6 @@ function HomePage() {
 	const handleAdd = (exercise) => {
 		setExercises((prev) => [...prev, exercise]) 
 	}
-
 	return (
     
 		<div className = {styles['page-layout']}>
@@ -90,7 +89,7 @@ function HomePage() {
 			/>
 			{showResults && (
 				<div className={styles['work-out-search-div']}>
-					<SearchBar params={params} setParams={setParams} />
+					<SearchBar exercises={exercises} params={params} setParams={setParams} />
 					<BsCaretDown
 						className={
 							!show && styles['work-out-flipper']}

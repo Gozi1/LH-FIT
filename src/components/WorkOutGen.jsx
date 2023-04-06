@@ -54,7 +54,7 @@ const WorkOutGen = (props) => {
 				/>
 			</div>
 			<br />
-			<h1>What is your goal ?</h1>
+			<h1>What is your training goal?</h1>
 			<div className={styles['work-out-container-type']}>
 				<Button
 					name='Strength'

@@ -8,19 +8,26 @@ const SearchBar = () => {
   // get a varible that saves whats in search bar
   // make a function that handles submit request/takes response data (search by name - stretch)
   // 
-
+	const [params, setParams] = useState({
+    name: '',
+    difficulty: '',
+    type: '',
+    muscle: '',
+    exercises: []
+  });	
 	const [input, setInput] = useState('');
+
 
 	const handleSubmit = () => {
 		setParams((prev) => ({ ...prev, name: input }));
 		setInput('');
 	};
 
-	// useEffect(() => {
+	//useEffect(() => {
 	// 	if (params.name) {
 	// 		const options = {
 	// 			method: 'GET',
-	// 			url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
+	// 			url: 'https://localhost:8080/api/exercises',
 	// 			params: { name: params.name, muscle: '', type: '' },
 	// 			headers: {
 	// 				'X-RapidAPI-Key':
@@ -39,12 +46,31 @@ const SearchBar = () => {
 	// 				console.error(error);
 	// 			});
 	// 	}
-	// }, [params.name]);
+	// }, [params]
+	useEffect(() => {
+		if (params.name) {
+		const options = {
+			method: 'GET',
+			url: 'http://localhost:8080/api/exercises',
+			params: { name: params.name, muscle: '', type: '' }
+		}
+		axios.request(options)
+		.then((response) => {
+			console.log(response);
+			setParams((prev) => ({...prev, exercises: response.data}))
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	}
+		
+		}, [params.name]);
+	
 
 	return (
 		<form
 			className={styles['search-form']}
-			onSubmit={(event) => event.preventDefault()}
+			onSubmit={(e) => e.preventDefault()}
 			autoComplete='off'
 		>
 			<div className={styles['search-bar']}>
@@ -60,11 +86,11 @@ const SearchBar = () => {
 				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
 			</div>
 			<div>
-				{/* {params.exercises.map((exercise, i) => (
+				  {params.exercises.map((exercise, i) => (
 					<div key={i} className={'search-result'}>
 						{exercise.name}
 					</div>
-				))} */}
+				))}
 			</div>
 		</form>
 	);
