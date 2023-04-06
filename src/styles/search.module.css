@@ -13,29 +13,38 @@
 
 .search-bar{
   padding-right: 10px;
-  height: 32px;
+  height: 2rem;
+  width: 20rem;
   border-top: none;
   border-left: none;
   border-right: none;
+  line-height:none
+}
+.search-bar:focus{
+  outline: none;
+  box-shadow: 0 2px #666;
+  border-left:2px solid #666 ;
+  /* border: none; */
 }
 .search-button {
-  display: inline-block;
-  padding: 8px 12px;
-  font-size: 10px;
+  
+  height: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  color: #fff;
-  background-color: black;
+  color: black;
+  /* background-color: black; */
   border: none;
   border-radius: 10px;
-  box-shadow: 0 3px #999;
+  /* box-shadow: 0 3px #999; */
+  transform: translateX(-2rem);
 }
 
 .search-button:hover {
-    background-color: white;
-    color: black;
-    box-shadow: 0 5px #666;
-    transform: translateY(1px);
+    /* background-color: black; */
+    color: grey;
+    /* box-shadow: 0 5px #666; */
+    transform: translateY(1px)translateX(-2rem);;
   }
