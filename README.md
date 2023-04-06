@@ -41,33 +41,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Set up Prisma and connect PostgreSQL database
+## API
 
-- Please make sure you have installed Prisma via "npm i".
-
-- Bootstrap a basic Prisma setup: ```npx prisma init```.
-
-- Go to your psql terminal, create a new database and modify infomations in the ".env" file. The format would be: "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
-
-- Use ```npx prisma db push``` to create tables in your database. You should see the following outpot:
-```
-Environment variables loaded from /Users/nikolasburk/Desktop/nextjs-guide/blogr-starter/.env 
-Prisma schema loaded from prisma/schema.prisma
-
-🚀  Your database is now in sync with your schema. Done in 2.10s
-```
-
-- Inserting the seed data via this code:
-```
-node prisma/seed.js
-```
-
-- Update Prisma Client everytime Prisma schema file is changing:
-```
-npx prisma generate
-```
-
-- View and check the database via this method:
-```
-npx prisma studio
-```
+Use another terminal to run LH-FIT-API/index.js. API port: http://localhost:8080
