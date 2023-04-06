@@ -2,9 +2,14 @@ import React from 'react';
 import { BsSearch, BsList, BsX } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
+
 const navbar = () => {
-	let router = useRouter();
-	let menuRef = useRef();
+	const router = useRouter();
+	const menuRef = useRef();
+	const [cookies,setCookies] = useCookies(['user']);
+	
+
 	const [mobileMenu, setMobileMenu] = useState(false);
 	useEffect(() => {
       let handler = (e) =>{
@@ -32,6 +37,7 @@ const navbar = () => {
 					>
 						Create Workout
 					</li>
+					{cookies.user && <li>Hello {cookies.user}!</li>}
 					<li
 						onClick={() => {
 							router.push('/search');
