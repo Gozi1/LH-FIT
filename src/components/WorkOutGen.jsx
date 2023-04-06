@@ -1,24 +1,32 @@
-import { useState } from 'react'
 import styles from '../styles/WorkOutGen.module.scss'
 import Button from './Button'
 import MuscleContainer from './MuscleContainer'
-import { useRouter } from 'next/router'
-
+import { useRouter} from 'next/router'
+import { useState } from 'react'
+import Error from './Error'
 //props need (setCurrentParams)
 // we choose a couple of params based on the user
 
 const WorkOutGen = () => {
-  const { push } = useRouter();
+  
+  const router = useRouter();
   const [params,setParams] = useState({
     difficulty: '',
     type:'',
     muscleGroup: '',
     numberOfExercises:6
   })
+  const [error,setError] = useState(null)
   const handleSubmit = () =>{
+    if(params.difficulty||params.type||params.muscleGroup === ''){
+      setError('Please select from all categories before submitting')
+    }
+    else{
     //change globalcurrent params to this params 
     // redirect page to the show my exercises page 
-    push('/my-workout')
+    router.push('/my-workout')
+    }
+    
   }
   const handleParams = (objectKey,Value) =>{
     setParams(prevState => ({
@@ -53,7 +61,8 @@ const WorkOutGen = () => {
       <br/> 
       <br/>   
       <button className={styles['submit']} onClick={handleSubmit}>Submit</button>
-      {/* make an error page if user choose nothing */}
+      <br/>
+      {error && <Error message = {error} onCancel = {setError}/>}
     </div>
   )
 }
