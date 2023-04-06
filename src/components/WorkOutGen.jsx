@@ -9,15 +9,16 @@ import Error from './Error';
 
 const WorkOutGen = (props) => {
 	const router = useRouter();
-	const { params, setParams } = props;
+	const { params, setParams,setShowResults,show,showResults,reset } = props;
 	const [error, setError] = useState(null);
 	const handleSubmit = () => {
-		if (params.difficulty || params.type || params.muscleGroup === '') {
+		if (params.difficulty ==''||params.type ==''||params.muscleGroup =='') {
 			setError('Please select from all categories before submitting');
 		} else {
 			//change globalcurrent params to this params
 			// redirect page to the show my exercises page
-			router.push('/my-workout');
+			// router.push('/my-workout');
+			setShowResults(true)
 		}
 	};
 	const handleParams = (objectKey, Value) => {
@@ -30,7 +31,7 @@ const WorkOutGen = (props) => {
 	console.log(params);
 
 	return (
-		<div className={styles['work-out-gen']}>
+		<div className={`${styles['work-out-gen']} ${show&&styles['shrink']}`}>
 			<h1>Choose your difficulty</h1>
 			<div className={styles['work-out-container-difficulty']}>
 				<Button
@@ -82,9 +83,14 @@ const WorkOutGen = (props) => {
 			<MuscleContainer handleParams={handleParams} />
 			<br />
 			<br />
+			<div className={styles["work-out-buttons"]}>
 			<button className={styles['submit']} onClick={handleSubmit}>
 				Submit
 			</button>
+			{showResults && <button className={styles['reset']} onClick={reset}>
+				Reset
+			</button>}
+			</div>
 			<br />
 			{error && <Error message={error} onCancel={setError} />}
 		</div>
