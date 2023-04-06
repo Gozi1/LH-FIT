@@ -2,13 +2,13 @@ import React from 'react'
 import ExerciseItem from './ExerciseItem';
 const ExerciseList = (props) => {
   const {exercises,onAdd,onRemove} = props;
-  console.log(exercises[0])
-  console.log('hello')
   const exercisesList = exercises.map((exercise, i) =>{
     return (
       <>
       <ExerciseItem 
-          key={i} 
+          key = {i}
+          id = {i}
+          // id = {exercise.id}
           name = {exercise.name}  
           sets = {3} 
           reps = {10} 
