@@ -3,12 +3,11 @@ import styles from '../styles/search.module.css';
 import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
 
-const SearchBar = (props) => {
-	// search to api
-	// get a varible that saves whats in search bar
-	// make a function that handles submit request/takes response data (search by name - stretch)
-	//
-	const { params, setParams } = props;
+const SearchBar = () => {
+  // search to api
+  // get a varible that saves whats in search bar
+  // make a function that handles submit request/takes response data (search by name - stretch)
+  // 
 
 	const [input, setInput] = useState('');
 
