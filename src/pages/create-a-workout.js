@@ -59,9 +59,9 @@ function HomePage() {
 	//adds keys to exercises
 	const addKeys = (exercises, type = '') => {
 		const Obj = {
-			hypertropy: { sets: 5, reps: 9 },
-			strength: { sets: 3, reps: 10 },
-			endurance: { sets: 6, reps: 8 },
+			hypertropy: { sets: 4, reps: 12 },
+			strength: { sets: 4, reps: 6 },
+			endurance: { sets: 4, reps: 15 },
 			'': { sets: 5, reps: 2 },
 		};
 		return exercises.map((exercise) => {

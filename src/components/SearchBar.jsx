@@ -26,12 +26,13 @@ const SearchBar = (props) => {
 		if (params.name) {
 			const options = {
 				method: 'GET',
-				url: 'http://localhost:8080/api/exercises',
+				url: 'http://localhost:8080/api/exercises/search',
 				params: { search: params.name },
 			};
 			axios
 				.request(options)
 				.then((response) => {
+					console.log(options)
 					console.log(response);
 					setParams((prev) => ({ ...prev, exercises: response.data }));
 				})
@@ -49,19 +50,17 @@ const SearchBar = (props) => {
 		>
 			<div className={styles['search-bar']}>
 				<input
-					placeholder='Search by muscle group'
+					placeholder='Search by exercise name'
 					type='text'
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
-					className={styles['search-bar']}
+				  className={styles['search-bar-input']}
 					onKeyDown={(e) => {
 						if (e.key === 'Enter') {
 							handleSubmit();
 						}
 					}}
-				></input>
-			</div>
-			<div>
+				/>
 				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
 			</div>
 			<div>
@@ -71,20 +70,7 @@ const SearchBar = (props) => {
 						name={exercise.name}
 						onAdd={() => onAdd(exercise)}
 					/>
-					// <SearchList
-					// 	key={exercise.name}
-					// 	name={exercise.name}
-					// 	sets={3}
-					// 	reps={10}
-					// 	muscleGroup={exercise.muscle}
-					// 	equipment={exercise.equipment}
-					// 	instructions={exercise.instructions}
-					// 	onAdd={() => onAdd(exercise)}
-					// 	onRemove={() => onRemove(exercise.name)}
-					//  />
-					// <div key={i} className={'search-result'}>
-					// 	{exercise.name}
-					// </div>
+					
 				))}
 			</div>
 		</form>
