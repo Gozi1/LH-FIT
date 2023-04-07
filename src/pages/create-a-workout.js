@@ -85,8 +85,9 @@ function HomePage() {
 	};
 	// function that adds exercise to the array
 	const handleAdd = (exercise) => {
+		const newExercise = {...exercise, sets: 0, reps: 0, weights: 0}
 		console.log('HANDLE ADD EXERCISE', exercise);
-		setExercises((prev) => [...prev, exercise]);
+		setExercises((prev) => [...prev, newExercise]);
 	};
 
 	return (
