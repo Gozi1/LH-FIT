@@ -13,9 +13,12 @@ const navbar = () => {
 	const [cookies, removeCookie] = useCookies(['user_id']);
 	const {user} = useGetUser()
 	const [mobileMenu, setMobileMenu] = useState(false);
+
+	const router = useRouter();
 	// function to logout user
 	const handleLogout = () => {
 		removeCookie('user_id');
+		router.push('/login')
 	};
 	
 	// function to close Nav menu when clicked outside

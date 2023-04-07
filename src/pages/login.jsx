@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import useFetchApi from '@/hooks/useFetchApi';
+import useGetUser from '../hooks/useGetUser';
+
+
+
 const login = () => {
 	const { push } = useRouter();
 	const [cookies, setCookie] = useCookies(['user_id']);
@@ -11,12 +15,23 @@ const login = () => {
 	const [password, setPassword] = useState('');
 	const [userOBJ, setUserOBJ] = useState();
 	const [error, setError] = useState();
+
+	// redirect to create-a-workout if logged in
+	const { user, loading } = useGetUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user || loading) {
+      router.push('/create-a-workout')
+    } 
+  }, [user, loading])
+
 	// Success function to set cookie and redirect to home page
 	const successFunc = (data) => {
 		setCookie('user_id', data, {
 			path: '/',
 		});
-		push('/');
+		push('/create-a-workout');
 	};
 	// Error function to set error message
 	const errorFunc = (error) => {

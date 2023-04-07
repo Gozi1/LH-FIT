@@ -2,10 +2,22 @@ import ExerciseList from '@/components/ExerciseList';
 import WorkOutGen from '../components/WorkOutGen';
 import styles from '../styles/WorkOutGen.module.scss';
 import SearchBar from '@/components/SearchBar';
-
 import { useEffect, useState } from 'react';
 import useFetchApi from '@/hooks/useFetchApi';
+import { useRouter } from 'next/router';
+import useGetUser from '../hooks/useGetUser';
+
+
 function HomePage() {
+	// if user is false reroute to login 
+	const { user, loading } = useGetUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!(user || loading)) {
+      router.push('/login')
+    } 
+  }, [user, loading])
 
 
 	const [params, setParams] = useState({
