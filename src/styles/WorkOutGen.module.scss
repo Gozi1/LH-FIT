@@ -20,11 +20,12 @@
   flex-direction: column;
   align-items: center;
   max-height: 30rem;
-  transform-origin: 80% 0%;
+  transform-origin: center bottom ;
   transition: all 0.5s linear;
 }
 .shrink{
   transform: scale(0);
+  opacity: 0;
   max-height: 1px;
 }
 .work-out-container-difficulty{
