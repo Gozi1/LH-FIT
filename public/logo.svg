@@ -1,14 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="300.000000pt" height="291.000000pt" viewBox="0 0 300.000000 291.000000"
+<?xml version="1.0" encoding="UTF-8"?>
+		<svg className='Logo' version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="auto" height="5rem" viewBox="0 0 300.000000 291.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.10, written by Peter Selinger 2001-2011
 </metadata>
 <g transform="translate(0.000000,291.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="#000" stroke="none">
 <path d="M1259 2753 c-13 -3 -6 -27 40 -138 30 -74 57 -132 59 -131 4 5 -69
 259 -77 267 -3 3 -13 4 -22 2z"/>
 <path d="M1490 2671 l0 -90 -52 -63 c-28 -35 -83 -98 -121 -140 -57 -65 -65

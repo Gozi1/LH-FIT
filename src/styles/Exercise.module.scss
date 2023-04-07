@@ -1,28 +1,30 @@
+$border-size: 0.125rem;
+$duration: 250ms;
+$ease: cubic-bezier(0.215, 0.61, 0.505, 1);
+$font-family: monospace;
+$color-primary: white;
+$color-secondary: blue;
+$color-tertiary: black;
+$shadow: rgba(0, 0, 0, 0.1);
+$space: 1rem;
+
+
 .current-exercise-container{
-  border: 1px solid black;
-  display: flex;
+  border: 1px solid white;
   flex-direction: column;
+  font-size: 1.5rem;
   font-family: 'Poppins', sans-serif;
   // remove in place of flex box in the exercise list 
   padding: 0 2rem;
-  width: 750px
+  width: 55rem
 }
 .current-exercise-container button{
   z-index: 50;
-  font-size: 5rem;
-  font-size: 2rem;
   border: 1px solid transparent;
-  border-radius: 5rem;
-  
-  
 }
-.exercise-positioner>svg{
-  font-size: 1rem;
-  
-}
-.exercise-positioner>svg:hover{
-  color: red;
-}
+
+
+
 
 .current-exercise-container article{
   transition: all 0.3s ease-in;
@@ -48,20 +50,22 @@
   margin: 0.2rem 0;
 }
 .instructions-container{
-  border-top: 2px solid black;
+  border-top: 2px solid white;
   width: 100%;
   display: flex;
   align-content: center;
   flex-direction: column;
   svg{
     width: 100%;
+    background-color: transparent;
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: 2rem;
     transition: all ease 0.5s;
+    cursor: pointer;
   }
   svg:hover {
-    color: gray;
+    fill:blue
   }
 }
 .svg-flipper{
@@ -77,13 +81,101 @@
 }
 .exercise-on-remove{
   cursor: pointer;
+  background-color: transparent;
   transition: all ease 0.5s;
   &:hover{
     transform: scale(1.6);
     color: red;
   }
-  // :hover{
-  //   scale: 1.2;
-  //   color: red;
-  // }
+ 
+}
+
+.exercise-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  >input{
+    width: 55rem;
+    height:3rem;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+  }
+  input:focus{
+    border: 3px solid white;
+  }
+}
+.edit{
+  flex-grow: 1;
+  cursor: pointer;
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  border: $border-size solid $color-primary;
+  color: $color-primary;
+  background-color: $color-tertiary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  height: 6rem; 
+  transition: width ease-in 0.3s;
+}
+
+
+.edit:active {
+  transform: translateY($border-size);
+}
+.edit:hover{
+  color: white;
+  outline: none;
+  text-shadow: none;
+  background-color: blue; 
+  transition: width ease-in 0.3s;
+}
+.submit{
+  flex-grow: 1;
+  cursor: pointer;
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  border: $border-size solid $color-primary;
+  color: $color-primary;
+  background-color: $color-tertiary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  height: 6rem;
+  transition: width ease-in 0.3s;
+}
+.submit:active {
+  transform: translateY($border-size);
+}
+.submit:hover{
+  color: white;
+  outline: none;
+  text-shadow: none;
+  background-color: green;
+  transition: width ease-in 0.3s;
+  
+}
+.button-container{
+  display: flex;
+  width: 55rem;
+  justify-content: center;
+}
+.edit-container{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  input{
+    max-width: 2rem;
+  }
 }

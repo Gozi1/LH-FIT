@@ -2,11 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items:center;
-  width :100%;
+  width :fit-content;
   margin-left: auto;
   margin-right: auto;
   font-size: 2rem;
   gap:3rem;
+  border:1px solid grey;
+  padding: 3rem 4rem 5rem 4rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
 }
 .account button{
   width:25rem;
@@ -15,22 +21,24 @@
 	font: inherit;
 	cursor: pointer;
 	outline:auto;
-  border: 1px solid  black;
+  color: black;
 }
 .account h1{
   font-size: 4rem;
-  text-decoration: underline;
+
 }
 .account button:hover{
   background-color: black;
   color: white;
 }
 .account input{
-  border: 2px solid black;
+  border: 1px solid grey;
+  border-radius: 5px;
   outline: none;
   width:25rem;
-  height: 3rem;
+  height: 4rem;
   font-size: 1.5rem;
+  padding: 0 1rem;
 }
 .account div{
   width: 100%;

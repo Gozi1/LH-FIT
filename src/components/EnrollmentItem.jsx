@@ -2,13 +2,13 @@ import React from 'react';
 import styles from '../styles/Exercise.module.scss';
 import { useState } from 'react';
 import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
+
 const CurrentEnrollmentItem = (props) => {
 	//props
 	const { id, exercise, enrollment, setEnrollment } = props;
 	//destructure exercise
-	const { name, muscle, equipment, instructions } =
-		exercise;
-	const { sets, reps, weight} = enrollment;
+	const { name, muscle, equipment, instructions } = exercise;
+	const { sets, reps, weight } = enrollment;
 
 	const [edit, setEdit] = useState(false);
 
@@ -37,26 +37,27 @@ const CurrentEnrollmentItem = (props) => {
 	}
 
 	const handleSubmit = async (event) => {
-
 		// Make API call with project value
-    fetch(`http://localhost:8080/api/enrollments/enrollment/${enrollment.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(enrollment),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((response) => {
-      return response.json();
-    }).catch((error) => {
-      // Handle error
-    });
-
+		fetch(`http://localhost:8080/api/enrollments/enrollment/${enrollment.id}`, {
+			method: 'PUT',
+			body: JSON.stringify(enrollment),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.catch((error) => {
+				// Handle error
+			});
 	};
 
 	return (
 		<div className={styles['current-exercise-container']}>
-
+			<h3>{name}</h3>
 			<div className={styles['exercise-positioner']}>
+			
 				<div>
 					<p>Muscle Group : {muscle}</p>
 					<p>Equipment Needed: {equipment}</p>
@@ -133,7 +134,7 @@ const CurrentEnrollmentItem = (props) => {
 				</article>
 			</div>
 			<button onClick={handleClick}>Edit</button>
-      <button onClick={handleSubmit}>Submit</button>
+			<button onClick={handleSubmit}>Submit</button>
 		</div>
 	);
 };
