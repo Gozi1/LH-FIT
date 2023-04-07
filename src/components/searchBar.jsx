@@ -4,19 +4,11 @@ import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
 
 const SearchBar = () => {
-	// search to api
-	// get a varible that saves whats in search bar
-	// make a function that handles submit request/takes response data (search by name - stretch)
-	//
+  // search to api
+  // get a varible that saves whats in search bar
+  // make a function that handles submit request/takes response data (search by name - stretch)
+  // 
 
-	const [params, setParams] = useState({
-		difficulty: 'beginner',
-		type: '',
-		muscle: '',
-		offset: 6,
-		name: '',
-		exercises: [],
-	});
 	const [input, setInput] = useState('');
 
 	const handleSubmit = () => {
@@ -24,62 +16,57 @@ const SearchBar = () => {
 		setInput('');
 	};
 
-	useEffect(() => {
-		if (params.name) {
-			const options = {
-				method: 'GET',
-				url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
-				params: { name: params.name, muscle: '', type: '' },
-				headers: {
-					'X-RapidAPI-Key':
-						'87b5ef7ecemsh3744aa57e06b7f7p1b5fffjsn04eef49b9efc',
-					'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com',
-				},
-			};
+	// useEffect(() => {
+	// 	if (params.name) {
+	// 		const options = {
+	// 			method: 'GET',
+	// 			url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
+	// 			params: { name: params.name, muscle: '', type: '' },
+	// 			headers: {
+	// 				'X-RapidAPI-Key':
+	// 					'87b5ef7ecemsh3744aa57e06b7f7p1b5fffjsn04eef49b9efc',
+	// 				'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com',
+	// 			},
+	// 		};
 
-			axios
-				.request(options)
-				.then(function (response) {
-					// console.log(response.data);
-					setParams((prev) => ({ ...prev, exercises: response.data }));
-				})
-				.catch(function (error) {
-					console.error(error);
-				});
-		}
-	}, [params.name]);
+	// 		axios
+	// 			.request(options)
+	// 			.then(function (response) {
+	// 				// console.log(response.data);
+	// 				setParams((prev) => ({ ...prev, exercises: response.data }));
+	// 			})
+	// 			.catch(function (error) {
+	// 				console.error(error);
+	// 			});
+	// 	}
+	// }, [params.name]);
 
 	return (
-		<main>
-			<form
-				className={styles['search-form']}
-				onSubmit={(event) => event.preventDefault()}
-				autoComplete='off'
-			>
-				<div className={styles['search-bar']}>
-					<input
-						placeholder='Search by muscle group'
-						type='text'
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-						className={styles['search-bar']}
-					></input>
-				</div>
-				<div>
-					<BsSearch
-						className={styles['search-button']}
-						onClick={handleSubmit}
-					/>
-				</div>
-			</form>
+		<form
+			className={styles['search-form']}
+			onSubmit={(event) => event.preventDefault()}
+			autoComplete='off'
+		>
+			<div className={styles['search-bar']}>
+				<input
+					placeholder='Search by muscle group'
+					type='text'
+					value={input}
+					onChange={(e) => setInput(e.target.value)}
+					className={styles['search-bar']}
+				></input>
+			</div>
 			<div>
-				{params.exercises.map((exercise, i) => (
+				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
+			</div>
+			<div>
+				{/* {params.exercises.map((exercise, i) => (
 					<div key={i} className={'search-result'}>
 						{exercise.name}
 					</div>
-				))}
+				))} */}
 			</div>
-		</main>
+		</form>
 	);
 };
 

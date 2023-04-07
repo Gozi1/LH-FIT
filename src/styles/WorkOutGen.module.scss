@@ -10,19 +10,31 @@
   $shadow: rgba(0, 0, 0, 0.1);
   $space: 1rem;
 
+.page-layout{
+  display: flex;
+  flex-direction: column;
+  gap:4rem
+}
 .work-out-gen{
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 30rem;
+  transform-origin: 80% 0%;
+  transition: all 0.5s linear;
+}
+.shrink{
+  transform: scale(0);
+  max-height: 1px;
 }
 .work-out-container-difficulty{
   display: flex;
-  width: 700px;
+  width: 35rem;
   box-shadow: $shadow 4px 4px;
 }
 .work-out-container-type{
   display: flex;
-  width: 700px;
+  width: 35rem;
   box-shadow: $shadow 4px 4px;
 }
 .button{
@@ -104,7 +116,13 @@
   transform: translateY($border-size);
 }
 
-.submit{
+.work-out-buttons{
+  display: flex;
+  width: 35rem;
+  justify-content: center;
+}
+.reset{
+  flex-grow: 1;
   cursor: pointer;
   position: relative;
   padding:
@@ -117,11 +135,38 @@
   font-size: 1.5rem;
   font-family: $font-family;
   text-shadow: $shadow 2px 2px;
-  width: 600px;
+  
   transition: width ease-in 0.3s;
 }
 
 
+.reset:active {
+  transform: translateY($border-size);
+}
+.reset:hover{
+  color: white;
+  outline: none;
+  text-shadow: none;
+  background-color: rgb(228, 83, 83); 
+  transition: width ease-in 0.3s;
+}
+.submit{
+  flex-grow: 1;
+  cursor: pointer;
+  position: relative;
+  padding:
+    calc($space / 1.125)
+    $space
+    $space;
+  border: $border-size solid black;
+  color: $color-secondary;
+  background-color: $color-primary;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  text-shadow: $shadow 2px 2px;
+  
+  transition: width ease-in 0.3s;
+}
 .submit:active {
   transform: translateY($border-size);
 }
@@ -130,8 +175,8 @@
   outline: none;
   text-shadow: none;
   background-color: $color-secondary;
-  width: 700px;
   transition: width ease-in 0.3s;
+  
 }
 
 .work-out-container-muscle{
@@ -146,10 +191,31 @@
   font-size: 1.5rem;
   font-family: $font-family;
   text-shadow: $shadow 2px 2px;
-  width: 700px;
+  width: 35rem;
   
 }
 .work-out-container-muscle:hover{
   background-color: $color-secondary;
   color: $color-primary;
 }
+.work-out-search-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  >svg{
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    transition: all ease 0.5s;
+  }
+  >svg:hover {
+    color: gray;
+  }
+}
+.work-out-flipper{
+  transform: rotate(180deg);
+  transition: all ease 0.5s;
+}
+

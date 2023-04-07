@@ -2,24 +2,34 @@ import React from 'react';
 import { BsSearch, BsList, BsX } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
+
 const navbar = () => {
-	let router = useRouter();
-	let menuRef = useRef();
-	const [mobileMenu, setMobileMenu] = useState(false);
+	const router = useRouter()
+	const menuRef = useRef()
+	const [cookies,setCookies] = useCookies(['user'])
+	const [mobileMenu, setMobileMenu] = useState(false)
+	const [user,setUser] = useState(null)
+
+	
 	useEffect(() => {
       let handler = (e) =>{
+				
         if(!menuRef.current.contains(e.target)){
           setMobileMenu(false)
         }
-      }
+			}      
       document.addEventListener('mousedown',handler)
+			//Important you need to set the cookie you want to use to a state variable  unless you get hydration errors
+			setUser(cookies.user)
+			
   });
 	return (
 		<nav className='nav'>
-			<div className='mobile-menu' ref={menuRef}>
+			<section className='mobile-menu' ref={menuRef}>
 				{!mobileMenu && <BsList onClick={() => setMobileMenu(true)} />}
 				{mobileMenu && <BsX onClick={() => setMobileMenu(false)} />}
-				<a className='mobile-icon'>Menu</a>
+				<p className='mobile-icon'>Menu</p>
 
 				<ul
 					className={mobileMenu ? 'mobile-menu-show' : 'mobile-menu-hide'}
@@ -32,6 +42,7 @@ const navbar = () => {
 					>
 						Create Workout
 					</li>
+					<li>{user}</li>
 					<li
 						onClick={() => {
 							router.push('/search');
@@ -54,9 +65,10 @@ const navbar = () => {
 						SignUp
 					</li>
 				</ul>
-			</div>
+			</section>
 		</nav>
 	);
 };
 
 export default navbar;
+
