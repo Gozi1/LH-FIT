@@ -47,7 +47,7 @@ function HomePage() {
 	// 			'Position a bar into a landmine or in a corner to keep it from moving. Load an appropriate weight onto your end. Stand over the bar, and position a Double D row handle around the bar next to the collar. Using your hips and legs, rise to a standing position. Assume a wide stance with your hips back and your chest up. Your arms should be extended. This will be your starting position. Pull the weight to your upper abdomen by retracting the shoulder blades and flexing the elbows. Do not jerk the weight or cheat during the movement. After a brief pause, return to the starting position.',
 	// 	},
 	// ];
-  
+
 	const [params, setParams] = useState({
 		name: '',
 		difficulty: '',
@@ -91,7 +91,7 @@ function HomePage() {
 			
 			{showResults && (
 				<ExerciseList 
-					exercises={exercises}
+					exercises={[]}
 					onRemove={(i) => console.log(i)}
 				/>
 			)}

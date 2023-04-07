@@ -32,7 +32,6 @@ const login = () => {
 		
 			<div className={styles['account']}>
 				<h1>Login</h1>
-			
 				<div>
 					<label for='email'>Email</label>
 					<input 

@@ -28,7 +28,8 @@ const CurrentExerciseItem = (props) => {
       {onAdd && 
       <BsPatchPlus onClick = {()=>onAdd(id)}/>}
       {onRemove && 
-      <BsPatchMinus onClick = {()=>onRemove(id)}/>}</div>
+      <BsPatchMinus onClick = {()=>onRemove(id)}/>}
+      </div>
       
       <div className = {styles['exercise-positioner']} >
       <div>

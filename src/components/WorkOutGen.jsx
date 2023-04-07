@@ -28,8 +28,6 @@ const WorkOutGen = (props) => {
 		}));
 	};
 
-	console.log(params);
-
 	return (
 		<div className={`${styles['work-out-gen']} ${show&&styles['shrink']}`}>
 			<h1>Choose your difficulty</h1>
