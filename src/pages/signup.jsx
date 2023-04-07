@@ -2,9 +2,9 @@ import React from 'react';
 import styles from '../styles/Users.module.scss';
 import Error from '@/components/Error';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
+import useFetchApi from '@/hooks/useFetchApi';
 
 const signup = () => {
 	const { push } = useRouter();
@@ -14,33 +14,32 @@ const signup = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState();
 	const [userOBJ, setUserOBJ] = useState();
-	useEffect(() => {
-		if (userOBJ) {
-			const options = {
-				method: 'POST',
-				url: 'http://localhost:8080/api/users/',
-				params: { ...userOBJ },
-			};
-			axios
-				.request(options)
-				.then((response) => {
-					console.log(response.data);
-					setCookie('user_id', response.data, {
-						path: '/',
-					});
-					push('/');
-				})
-				.catch((error) => {
-					if(error.response?.data?.message ){
-						setError(error.response.data.message)
-						}
-						else{
-							setError("Something went wrong")
-						}
-				});
+	// Success function to set cookie and redirect to home page
+	const successFunc = (data) => {
+		setCookie('user_id', data, {
+			path: '/',
+		});
+		push('/');
+	};
+	// Error function to set error message
+	const errorFunc = (error) => {
+		if (error.response?.data?.message) {
+			setError(error.response.data.message);
+		} else {
+			setError('Something went wrong');
 		}
-	}, [userOBJ]);
+	};
 
+	//fetch data from api
+	const { mode } = useFetchApi(
+		userOBJ,
+		{ name, email, password },
+		'http://localhost:8080/api/users/',
+		'POST',
+		successFunc,
+		errorFunc
+	);
+	// Check if params are valid
 	const handleSubmit = () => {
 		setError(null);
 		if (!/^[A-Za-z]+(\s[A-Za-z]+)*$/.test(name)) {
@@ -53,7 +52,6 @@ const signup = () => {
 			setError('Password must be at least 8 characters long');
 		} else {
 			setUserOBJ({ name: name, email: email, password: password });
-			console.log();
 		}
 	};
 	return (

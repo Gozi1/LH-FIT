@@ -2,11 +2,10 @@ import ExerciseList from '@/components/ExerciseList';
 import WorkOutGen from '../components/WorkOutGen';
 import styles from '../styles/WorkOutGen.module.scss';
 import SearchBar from '@/components/SearchBar';
-import { BsCaretDown } from 'react-icons/bs';
+
 import { useEffect, useState } from 'react';
 function HomePage() {
-	// const params = WorkOutGen();
-	// USEsTATE PARAM
+	
 
 	//exercises should be a function based off params
 	const initialExercises = [
@@ -56,7 +55,7 @@ function HomePage() {
 		numberOfExercises: 6,
 	});
 	const [showResults, setShowResults] = useState(false);
-	//adds keys to exercises
+	//adds keys (sets,weights,reps) to exercises
 	const addKeys = (exercises, type = '') => {
 		const Obj = {
 			hypertropy: { sets: 4, reps: 12 },
@@ -73,25 +72,18 @@ function HomePage() {
 	};
 	const [exercises, setExercises] = useState(addKeys(initialExercises, ''));
 
-	const reset = () => {
-		setParams((prevState) => ({
-			...prevState,
-			difficulty: '',
-			type: '',
-			muscleGroup: '',
-		}));
-	};
 	//make a function that index the key value and the new value and updates the  state array
 	const updateArray = (index, key, value) => {
 		const newArray = [...exercises];
 		newArray[index][key] = value;
 		setExercises(newArray);
 	};
+	// function that removes exercise from the array
 	const handleRemove = (name) => {
 		const newExercises = exercises.filter((e) => e.name !== name);
 		setExercises(newExercises);
 	};
-
+	// function that adds exercise to the array
 	const handleAdd = (exercise) => {
 		console.log('HANDLE ADD EXERCISE', exercise);
 		setExercises((prev) => [...prev, exercise]);
