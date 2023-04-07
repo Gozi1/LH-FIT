@@ -4,7 +4,7 @@ import ExerciseItem from './ExerciseItem';
 
 const ExplorePage = () => {
 
-  const [routines,setRoutines] = useState([]);
+  const [routines, setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const adminID = 1;
@@ -50,6 +50,7 @@ const ExplorePage = () => {
     return <div>Loading...</div>;
   }
 
+  
   return(
     <div>
       <h1>Explore:</h1>

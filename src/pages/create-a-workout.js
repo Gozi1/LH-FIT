@@ -6,7 +6,7 @@ import SearchBar from '@/components/SearchBar';
 import { useEffect, useState } from 'react';
 import useFetchApi from '@/hooks/useFetchApi';
 function HomePage() {
-	
+
 
 	const [params, setParams] = useState({
 		difficulty: '',
@@ -18,21 +18,21 @@ function HomePage() {
 	//adds keys (sets,weight,reps) to exercises
 	const addKeys = (exercises, type = '') => {
 		const Obj = {
-			hypertropy: { sets: 5, reps: 9 },
-			strength: { sets: 3, reps: 10 },
-			endurance: { sets: 6, reps: 8 },
-			'': { sets: 5, reps: 2 },
+			"hypertrophy": { sets: 4, reps: 12 },
+			"strength": { sets: 5, reps: 6 },
+			"endurance": { sets: 4, reps: 20 },
+			'': { sets: 3, reps: 10 },
 		};
 		return exercises.map((exercise) => {
-			exercise.sets = 5;
-			exercise.reps = 5;
-			exercise.weight = 0;
+			exercise.sets = Obj[type].sets;
+			exercise.reps = Obj[type].reps;
+			exercise.equipment === ("none" || "body_only") ? exercise.weight = 0 : exercise.weight = 10;
 			return exercise;
 		});
 	};
 	const [exercises, setExercises] = useState();
 
-	
+
 	const sucessFunc = (data) => {
 		console.log('DATA', data);
 		setExercises(addKeys(data, params.type));
@@ -53,11 +53,11 @@ function HomePage() {
 	};
 	// function that adds exercise to the array
 	const handleAdd = (exercise) => {
-		const newExercises = { ...exercise, sets: 0, reps: 0, weight: 0};
+		const newExercises = { ...exercise, sets: 0, reps: 0, weight: 0 };
 		setExercises((prev) => [...prev, newExercises]);
 	};
 	// fetches the exercises from the api
-	const {mode} = useFetchApi(showResults,
+	const { mode } = useFetchApi(showResults,
 		params,
 		'http://localhost:8080/api/exercises',
 		'GET',
@@ -73,7 +73,7 @@ function HomePage() {
 					setShowResults={setShowResults}
 				/>
 			)}
-			{mode ==='SHOW'&& showResults && (
+			{mode === 'SHOW' && showResults && (
 				<div className={styles['work-out-search-div']}>
 					<SearchBar
 						exercises={exercises}
@@ -84,7 +84,7 @@ function HomePage() {
 				</div>
 			)}
 
-			{mode ==='SHOW'&& showResults && (
+			{mode === 'SHOW' && showResults && (
 				<ExerciseList
 					exercises={exercises}
 					onRemove={handleRemove}
