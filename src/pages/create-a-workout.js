@@ -7,9 +7,8 @@ import { useEffect, useState } from 'react';
 function HomePage() {
 
 
-	//  exercises should be a function based off params
-	/// we should use the get serverside props function for this 
-	const [exercises,setExercises] = useState([
+	 //exercises should be a function based off params
+	const initialExercises = [
 		{
 			name: 'Single-Leg Press',
 			type: 'strength',
@@ -18,8 +17,6 @@ function HomePage() {
 			difficulty: 'intermediate',
 			instructions:
 				'Load the sled to an appropriate weight. Seat yourself on the machine, planting one foot on the platform in line with your hip. Your free foot can be placed on the ground. Maintain good spinal position with your head and chest up. Supporting the weight, fully extend the knee and unlock the sled. This will be your starting position. Lower the weight by flexing the hip and knee, continuing as far as flexibility allows. Do not allow your lumbar to take the load by moving your pelvis. At the bottom of the motion pause briefly and then return to the starting position by extending the hip and knee. Complete all repetitions for one leg before switching to the other.',
-				sets:10,
-				reps:5
 		},
 		{
 			name: 'Landmine twist',
@@ -50,6 +47,7 @@ function HomePage() {
 		},
 	]);
 
+  
 	const [params, setParams] = useState({
 		name: '',
 		difficulty: '',
@@ -62,6 +60,8 @@ function HomePage() {
 	//uses to show and hide the workout Gen componenet
   const [show,setShow] = useState(false)
 	//resets the values in params
+	const [exercises, setExercises] = useState(initialExercises)
+
   const reset = () =>{
     setParams(prevState => ({
 			...prevState,
@@ -96,6 +96,16 @@ function HomePage() {
 		}
 		exersiceTypeSetter();
 	},[params,exercises])
+
+	const handleRemove = (name) => {
+		const newExercises = exercises.filter((e) => e.name !== name) 
+		setExercises(newExercises)
+	}
+
+	const handleAdd = (exercise) => {
+		setExercises((prev) => [...prev, exercise]) 
+	}
+
 	return (
     
 		<div className = {styles['page-layout']}>
@@ -123,8 +133,8 @@ function HomePage() {
 			
 			{showResults && (
 				<ExerciseList 
-					exercises = {exercises}
-					onRemove = {(i) => console.log(i)}
+					exercises={exercises}
+					onRemove={(i) => console.log(i)}
 				/>
 			)}
 		</div>

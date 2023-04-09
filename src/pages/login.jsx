@@ -3,8 +3,11 @@ import styles from '../styles/Users.module.scss'
 import Error from '@/components/Error';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 const login = () => {
+
+	const {push} = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [email,setEmail] = useState('')
 	const [password,setPassword] = useState('')
@@ -18,13 +21,14 @@ const login = () => {
    
     else{
       //validates that gone into the database and user is login also user cookie exist
-      //redirect to home page
+     
 		
 				setCookie('user', email, {
 					path: '/',
 				})
       console.log("hello")
-
+ 		//redirect to home page
+		 push('/')
     }
 
 	};
