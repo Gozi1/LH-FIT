@@ -2,16 +2,17 @@ import styles from '../styles/WorkOutGen.module.scss';
 import Button from './Button';
 import MuscleContainer from './MuscleContainer';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Error from './Error';
 import { Grid, Tooltip } from '@nextui-org/react';
+import axios from 'axios';
 
 //props need (setCurrentParams)
 // we choose a couple of params based on the user
 
 const WorkOutGen = (props) => {
 	const router = useRouter();
-	const { params, setParams, setShowResults, show, showResults, reset } = props;
+	const { params, setParams, setShowResults, show, showResults, reset, exercises, setExercises } = props;
 	const [error, setError] = useState(null);
 	const handleSubmit = () => {
 		if (params.difficulty == '' || params.type == '' || params.muscle == '') {
@@ -23,6 +24,51 @@ const WorkOutGen = (props) => {
 			setShowResults(true);
 		}
 	};
+
+	useEffect(() => {
+
+		setExercises([]);
+
+		//change reps and sets params according to exercise type
+		switch (params.type) {
+			case 'strength':
+				console.log('strength type accepted');
+				setParams((prev) => ({ ...prev, reps: 1, sets: 3 }));
+				break;
+			case 'endurance':
+				console.log('endurance type accepted');
+				setParams((prev) => ({ ...prev, reps: 2, sets: 6 }));
+				break;
+			case 'hypertrophy':
+				console.log('hypertrophy type accepted');
+				setParams((prev) => ({ ...prev, reps: 3, sets: 9 }));
+				break;
+			default:
+				console.log(`reps is ${params.reps} and sets is ${params.sets}`);
+		}
+
+		if (!params.name) {
+			setParams((prev) => ({ ...prev, name: undefined }));
+		}
+		const options = {
+			method: 'GET',
+			url: 'http://localhost:8080/api/exercises',
+			params: { muscle: params.muscle, difficulty: params.difficulty }
+		}
+		console.log(options.params)
+		axios.request(options)
+			.then((response) => {
+				//checks if response returns something 
+				if(response.data.length<1)setError('Unable to find exercise')
+				else setExercises(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		
+		console.log(params)
+
+	}, [params.difficulty, params.muscle, params.type]);
 
 
 	const handleParams = (objectKey, Value) => {

@@ -3,10 +3,14 @@ import WorkOutGen from '../components/WorkOutGen';
 import styles from '../styles/WorkOutGen.module.scss';
 import SearchBar from '@/components/searchBar';
 import { BsCaretDown } from 'react-icons/bs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+
 function HomePage() {
 	// const params = WorkOutGen();
 	// USEsTATE PARAM
+
+	const [error, setError] = useState("");
 
 	//exercises should be a function based off params
 	const initialExercises = [
@@ -60,13 +64,17 @@ function HomePage() {
 	const [showResults, setShowResults] = useState(false);
 	const [show, setShow] = useState(false);
 	const [exercises, setExercises] = useState(initialExercises);
+	const [searchResults, setSearchResults] = useState(initialExercises);
 
 	const reset = () => {
 		setParams((prevState) => ({
 			...prevState,
+			name: "",
 			difficulty: '',
 			type: '',
 			muscleGroup: '',
+			sets: 0,
+			reps: 0, 
 		}));
 	};
 
@@ -97,8 +105,8 @@ function HomePage() {
 					<SearchBar
 						params={params}
 						setParams={setParams}
-						exercises={exercises}
-						setExercises={setExercises}
+						searchResults={searchResults}
+						setSearchResults={setSearchResults}
 						onAdd={handleAdd}
 					/>
 

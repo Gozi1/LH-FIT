@@ -22,6 +22,9 @@ const CurrentExerciseItem = (props) => {
     </div>)
   })
   const [toggleInstruction,setToggleInstruction] = useState(false)
+
+  
+  
   return (
     <div className={styles['current-exercise-container']} >
       <div className = {styles['exercise-positioner']}>

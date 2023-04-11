@@ -3,13 +3,13 @@ import styles from '../styles/search.module.css';
 
 const SearchItem = (props) => {
 
-  const { exercise, onAdd } = props;
+  const { searchResult, onAdd } = props;
 
   return (
       <li className={styles['search-item']}>
-        <p> {exercise.name}</p>
-        <p> {exercise.difficulty}</p>
-        <p> {exercise.muscle}</p>
+        <p> {searchResult.name}</p>
+        <p> {searchResult.difficulty}</p>
+        <p> {searchResult.muscle}</p>
         
         <button onClick={onAdd}>
         +

@@ -3,21 +3,21 @@ import SearchItem from './SearchItem';
 import styles from '../styles/search.module.css';
 import {useEffect, useState } from 'react';
 import Error from './Error';
-const SearchList = (props,onAdd) => {
-  const {exercises} = props
+const SearchList = (props) => {
+  const {searchResults, onAdd} = props
   
   const [error,setError] = useState('')
 
   useEffect(()=>{
     //checks if response returns something 
-    if(exercises.length<1)setError('Unable to find exercise')
+    if(searchResults.length<1)setError('Unable to find exercise')
     else setError(null)
-  },[exercises])
+  },[searchResults])
   
   return (
     <ul className={styles['search-list']}>
-      {exercises.map((exercise) => (
-					<SearchItem key={exercise.name} exercise={exercise} onAdd={() => onAdd(exercise)}/>
+      {searchResults.map((searchResult) => (
+					<SearchItem key={searchResult.name} searchResult={searchResult} onAdd={() => onAdd(searchResult)}/>
       ))}
 
        {error && <Error message = {error} onCancel = {setError}/>}
