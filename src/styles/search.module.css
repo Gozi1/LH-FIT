@@ -1,3 +1,7 @@
+.search{
+  display: flex;
+  flex-direction: column;
+}
 .search-form {
   display: flex;
   flex-direction: row;
@@ -47,4 +51,15 @@
     color: grey;
     /* box-shadow: 0 5px #666; */
     transform: translateY(1px)translateX(-2rem);;
+  }
+
+  .search-list{
+    margin-top: 3rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+  }
+  .search-item{
+    list-style: none;
+    text-decoration: none;
   }

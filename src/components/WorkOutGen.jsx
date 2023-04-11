@@ -14,7 +14,7 @@ const WorkOutGen = (props) => {
 	const { params, setParams, setShowResults, show, showResults, reset } = props;
 	const [error, setError] = useState(null);
 	const handleSubmit = () => {
-		if (params.difficulty == '' || params.type == '' || params.muscleGroup == '') {
+		if (params.difficulty == '' || params.type == '' || params.muscle == '') {
 			setError('Please select from all categories before submitting');
 		} else {
 			//change globalcurrent params to this params
@@ -29,9 +29,6 @@ const WorkOutGen = (props) => {
 			[objectKey]: Value.toLowerCase(),
 		}));
 	};
-
-	console.log(params);
-
 	return (
 		<div className={`${styles['work-out-gen']} ${show && styles['shrink']}`}>
 			<h1>Choose your difficulty</h1>

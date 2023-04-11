@@ -1,25 +1,24 @@
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/search.module.css';
 import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
-import SearchItem from './SearchItem';
+import SearchList from './SearchList';
 
 const SearchBar = (props) => {
 	// search to api
 	// get a varible that saves whats in search bar
-	// make a function that handles submit request/takes response data (search by name - stretch)
-	// 
-	const { onAdd } = props;
+	const { onAdd,params,setParams } = props;
 
-	const [params, setParams] = useState({
-		name: '',
-		difficulty: '',
-		type: '',
-		muscle: '',
-		exercises: []
-	});
+	// const [params, setParams] = useState({
+	// 	name: '',
+	// 	difficulty: '',
+	// 	type: '',
+	// 	muscle: '',
+	// 	exercises: []
+	// });
+	const [exercises, setExercises] = useState([])
 	const [input, setInput] = useState('');
-
+	
 
 	const handleSubmit = () => {
 		setParams((prev) => ({ ...prev, name: input }));
@@ -28,15 +27,19 @@ const SearchBar = (props) => {
 
 	useEffect(() => {
 		if (params.name) {
+			setExercises([])
 			const options = {
 				method: 'GET',
 				url: 'http://localhost:8080/api/exercises',
-				params: { name: params.name, muscle: '', type: '' }
+				params: { name: params.name, muscle: params.muscle, difficulty: params.difficulty }
 			}
+			console.log(options.params)
 			axios.request(options)
 				.then((response) => {
-					console.log(response);
-					setParams((prev) => ({ ...prev, exercises: response.data }))
+					//checks if response returns something 
+					if(response.data.length<1)setError('Unable to find exercise')
+					else setError(null)
+					setExercises(response.data)
 				})
 				.catch((error) => {
 					console.log(error);
@@ -47,6 +50,7 @@ const SearchBar = (props) => {
 
 
 	return (
+		<div className={styles['search']}>
 		<form
 			className={styles['search-form']}
 			onSubmit={(e) => e.preventDefault()}
@@ -64,26 +68,13 @@ const SearchBar = (props) => {
 			<div>
 				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
 			</div>
-			<div>
-				{params.exercises.map((exercise) => (
-					<SearchItem key={exercise.name} name={exercise.name} onAdd={() => onAdd(exercise)}/>
-					// <SearchList
-					// 	key={exercise.name}
-					// 	name={exercise.name}
-					// 	sets={3}
-					// 	reps={10}
-					// 	muscleGroup={exercise.muscle}
-					// 	equipment={exercise.equipment}
-					// 	instructions={exercise.instructions}
-					// 	onAdd={() => onAdd(exercise)}
-					// 	onRemove={() => onRemove(exercise.name)}
-					//  />
-					// <div key={i} className={'search-result'}>
-					// 	{exercise.name}
-					// </div>
-				))}
-			</div>
+			
 		</form>
+		<SearchList exercises ={exercises} onAdd = {onAdd} />
+		</div>
+				
+		 
+		
 	);
 };
 

@@ -1,9 +1,8 @@
 import React from 'react';
-import SearchBar from '@/components/SearchBar';
+import SearchBar from '@/components/searchBar';
 import { useState } from 'react';
 
 function HomePage() {
-	
 	const initialExercises = [
 		{
 			name: 'Single-Leg Press',
@@ -43,7 +42,7 @@ function HomePage() {
 		},
 	];
 
-	const [exercises, setExercises] = useState(initialExercises)
+	const [exercises, setExercises] = useState(initialExercises);
 
 	const [params, setParams] = useState({
 		name: '',
@@ -54,7 +53,7 @@ function HomePage() {
 	});
 	return (
 		<div>
-			<SearchBar exercises={exercises} params={params} setParams={setParams}/>
+			<SearchBar exercises={exercises} params={params} setParams={setParams} />
 		</div>
 	);
 }

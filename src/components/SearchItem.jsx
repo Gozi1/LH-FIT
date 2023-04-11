@@ -1,17 +1,20 @@
 import React from "react";
-import styles from '../styles/Exercise.module.scss'
+import styles from '../styles/search.module.css';
 
 const SearchItem = (props) => {
 
-  const { name, onAdd } = props;
+  const { exercise, onAdd } = props;
 
   return (
-      <div>
-        {name}
+      <li className={styles['search-item']}>
+        <p> {exercise.name}</p>
+        <p> {exercise.difficulty}</p>
+        <p> {exercise.muscle}</p>
+        
         <button onClick={onAdd}>
-        ADD+
+        +
         </button>
-      </div>
+      </li>
       
   )
 }

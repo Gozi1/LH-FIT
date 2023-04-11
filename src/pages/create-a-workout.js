@@ -1,14 +1,14 @@
 import ExerciseList from '@/components/ExerciseList';
 import WorkOutGen from '../components/WorkOutGen';
 import styles from '../styles/WorkOutGen.module.scss';
-import SearchBar from '@/components/SearchBar';
-import { BsCaretDown } from "react-icons/bs";
+import SearchBar from '@/components/searchBar';
+import { BsCaretDown } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 function HomePage() {
 	// const params = WorkOutGen();
 	// USEsTATE PARAM
 
-	 //exercises should be a function based off params
+	//exercises should be a function based off params
 	const initialExercises = [
 		{
 			name: 'Single-Leg Press',
@@ -48,7 +48,6 @@ function HomePage() {
 		},
 	];
 
-  
 	const [params, setParams] = useState({
 		name: '',
 		difficulty: '',
@@ -57,45 +56,49 @@ function HomePage() {
 		numberOfExercises: 6,
 	});
 	const [showResults, setShowResults] = useState(false);
-  const [show,setShow] = useState(false)
-	const [exercises, setExercises] = useState(initialExercises)
+	const [show, setShow] = useState(false);
+	const [exercises, setExercises] = useState(initialExercises);
 
-  const reset = () =>{
-    setParams(prevState => ({
+	const reset = () => {
+		setParams((prevState) => ({
 			...prevState,
 			difficulty: '',
-      type: '',
-      muscleGroup: '',}))
-  }
+			type: '',
+			muscleGroup: '',
+		}));
+	};
 
 	const handleRemove = (name) => {
-		const newExercises = exercises.filter((e) => e.name !== name) 
-		setExercises(newExercises)
-	}
+		const newExercises = exercises.filter((e) => e.name !== name);
+		setExercises(newExercises);
+	};
 
 	const handleAdd = (exercise) => {
-		console.log("HANDLE ADD EXERCISE", exercise)
-		setExercises((prev) => [...prev, exercise]) 
-	}
+		console.log('HANDLE ADD EXERCISE', exercise);
+		setExercises((prev) => [...prev, exercise]);
+	};
 
 	return (
-    
-		<div className = {styles['page-layout']}>
-      <WorkOutGen
+		<div className={styles['page-layout']}>
+			<WorkOutGen
 				params={params}
 				setParams={setParams}
 				setShowResults={setShowResults}
-        show = {show}
-        showResults = {showResults}
-        reset= {reset}
+				show={show}
+				showResults={showResults}
+				reset={reset}
 			/>
 			{showResults && (
 				<div className={styles['work-out-search-div']}>
-					<SearchBar exercises={exercises} params={params} setParams={setParams} onAdd={handleAdd}/>
-					
+					<SearchBar
+						exercises={exercises}
+						params={params}
+						setParams={setParams}
+						onAdd={handleAdd}
+					/>
+
 					<BsCaretDown
-						className={
-							!show && styles['work-out-flipper']}
+						className={!show && styles['work-out-flipper']}
 						onClick={() => {
 							setShow(!show);
 						}}
@@ -103,10 +106,8 @@ function HomePage() {
 				</div>
 			)}
 
-			
 			{showResults && (
-				<ExerciseList 
-				
+				<ExerciseList
 					onAdd={handleAdd}
 					exercises={exercises}
 					onRemove={handleRemove}
