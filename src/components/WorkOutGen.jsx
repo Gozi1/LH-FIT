@@ -20,14 +20,16 @@ const WorkOutGen = (props) => {
 			//change globalcurrent params to this params
 			// redirect page to the show my exercises page
 			// router.push('/my-workout');
-			setShowResults(true)
+			setShowResults(true);
 		}
 	};
+
+
 	const handleParams = (objectKey, Value) => {
 		setParams((prevState) => ({
 			...prevState,
 			[objectKey]: Value.toLowerCase(),
-		}));
+		}))
 	};
 	return (
 		<div className={`${styles['work-out-gen']} ${show && styles['shrink']}`}>

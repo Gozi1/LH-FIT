@@ -54,6 +54,8 @@ function HomePage() {
 		type: '',
 		muscleGroup: '',
 		numberOfExercises: 6,
+		sets: 0,
+		reps:0, 
 	});
 	const [showResults, setShowResults] = useState(false);
 	const [show, setShow] = useState(false);
@@ -86,14 +88,17 @@ function HomePage() {
 				setShowResults={setShowResults}
 				show={show}
 				showResults={showResults}
+				exercises={exercises}
+				setExercises={setExercises}
 				reset={reset}
 			/>
 			{showResults && (
 				<div className={styles['work-out-search-div']}>
 					<SearchBar
-						exercises={exercises}
 						params={params}
 						setParams={setParams}
+						exercises={exercises}
+						setExercises={setExercises}
 						onAdd={handleAdd}
 					/>
 
@@ -108,6 +113,7 @@ function HomePage() {
 
 			{showResults && (
 				<ExerciseList
+					params={params}
 					onAdd={handleAdd}
 					exercises={exercises}
 					onRemove={handleRemove}

@@ -3,9 +3,10 @@ import styles from '../styles/Exercise.module.scss'
 import { useState } from 'react'
 import { BsPatchMinus,BsPatchPlus,BsCaretDown } from "react-icons/bs";
 const CurrentExerciseItem = (props) => {
-  const {id,name, 
-    sets, 
-    reps, 
+  const {id,
+    name,
+    sets,
+    reps,
     muscleGroup, 
     equipment, 
     instructions, 
