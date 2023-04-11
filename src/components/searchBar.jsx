@@ -37,8 +37,6 @@ const SearchBar = (props) => {
 			axios.request(options)
 				.then((response) => {
 					//checks if response returns something 
-					if(response.data.length<1)setError('Unable to find exercise')
-					else setError(null)
 					setExercises(response.data)
 				})
 				.catch((error) => {
