@@ -3,7 +3,7 @@ import styles from '../styles/WorkOutGen.module.scss'
 
 const MuscleContainer = (props) => {
   const {handleParams} = props
-  const options = ['Chest', 'Back', 'Quads', 'Hamstrings', 'Glutes', 'Triceps', 'Biceps', 'Abs', 'Formarms',''];
+  const options = ['Abdominals', 'Abductors', 'Adductors', 'Biceps', 'Calves', 'Chest', 'Glutes', 'Hamstrings', 'Lats','Lower_back', 'Middle_back', 'Neck', 'Quadriceps', 'Traps', 'Triceps', ''];
   const onOptionChangeHandler = (event) => {
       handleParams('muscleGroup',event.target.value)
   }
