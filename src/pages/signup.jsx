@@ -1,15 +1,41 @@
 import React from 'react';
 import styles from '../styles/Users.module.scss'
 import Error from '@/components/Error';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 const signup = () => {
+	const {push} = useRouter();
+	const [cookies, setCookie] = useCookies(['user_id']);
   const [name,setName] = useState('')
 	const [email,setEmail] = useState('')
 	const [password,setPassword] = useState('')
 	const [error,setError] = useState()
+	const [userOBJ,setUserOBJ] = useState()
+	useEffect(()=>{
+    
+    if(userOBJ){const options = {
+      method: 'POST',
+      url: 'http://localhost:8080/api/users/',
+      params: {...userOBJ}
+    }
+    axios.request(options)
+      .then((response) => {
+        console.log(response.data);
+        setCookie('user_id', response.data, {
+					path: '/',
+				})
+        push('/')
+      }).catch((error) => {
+				setError(error.response.data.message)
+			});}
+      
+  },[userOBJ])
 
   const handleSubmit = () => {
+		setError(null);
 		if(!/^[A-Za-z]+(\s[A-Za-z]+)*$/.test(name)){
 			setError("Invalid full name")
 		}
@@ -21,6 +47,7 @@ const signup = () => {
       setError("Password must be at least 8 characters long");
     }
     else{
+			setUserOBJ({name:name,email:email,password:password})
       console.log()
     }
 	};
