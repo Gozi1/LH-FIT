@@ -1,33 +1,43 @@
-import React from 'react';
+
 import styles from '../styles/Users.module.scss'
 import Error from '@/components/Error';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const login = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const {push} = useRouter();
+  const [cookies, setCookie] = useCookies(['user_id']);
   const [email,setEmail] = useState('')
 	const [password,setPassword] = useState('')
+  const [userOBJ,setUserOBJ] = useState()
   const [error,setError] = useState()
 
-	const handleSubmit = () => {
-   // Check in the database if email and password is valid
-    if (false) {
-      setError("Invalid email or password. Please check and try again.");
+	useEffect(()=>{
+    
+    const options = {
+      method: 'POST',
+      url: 'http://localhost:8080/api/users/login',
+      params: {...userOBJ}
     }
-   
-    else{
-      //validates that gone into the database and user is login also user cookie exist
-      //redirect to home page
-		
-				setCookie('user', email, {
+    axios.request(options)
+      .then((response) => {
+        console.log(response.data);
+        setCookie('user_id', response.data, {
 					path: '/',
 				})
-      console.log("hello")
+        push('/')
+      })
+      .catch((error) => {
+        // console.log(error.response.data.message);
+        setError(error.response.data.message)
+      });
+      
+  },[userOBJ])
+	
 
-    }
-
-	};
+	
 	return (
 		
 			<div className={styles['account']}>
@@ -51,7 +61,7 @@ const login = () => {
 					/>
 				</div>
 				
-				<button onClick={handleSubmit}>Login</button>
+				<button onClick={()=>setUserOBJ({email:email,password:password})}>Login</button>
         {error && <Error message = {error} onCancel = {setError}/>}
 				
 			</div>
