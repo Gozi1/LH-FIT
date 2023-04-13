@@ -72,10 +72,32 @@ const navbar = () => {
 					</li>
 					<li
 						onClick={() => {
+							router.push('/explore');
 							push('/search');
 						}}
 					>
 						Explore
+					</li>
+					<li
+						onClick={() => {
+							router.push('/my-routines');
+						}}
+					>
+						My Routines
+					</li>
+					<li
+						onClick={() => {
+							router.push('/login');
+						}}
+					>
+						Login
+					</li>
+					<li
+						onClick={() => {
+							router.push('/signup');
+						}}
+					>
+						SignUp
 					</li>
 					{!user && (
 						<>
