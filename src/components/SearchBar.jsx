@@ -8,7 +8,7 @@ const SearchBar = (props) => {
 	// search to api
 	// get a varible that saves whats in search bar
 	// make a function that handles submit request/takes response data (search by name - stretch)
-	// 
+	//
 	const { onAdd } = props;
 
 	const [params, setParams] = useState({
@@ -16,10 +16,9 @@ const SearchBar = (props) => {
 		difficulty: '',
 		type: '',
 		muscle: '',
-		exercises: []
+		exercises: [],
 	});
 	const [input, setInput] = useState('');
-
 
 	const handleSubmit = () => {
 		setParams((prev) => ({ ...prev, name: input }));
@@ -31,20 +30,19 @@ const SearchBar = (props) => {
 			const options = {
 				method: 'GET',
 				url: 'http://localhost:8080/api/exercises',
-				params: { name: params.name, muscle: '', type: '' }
-			}
-			axios.request(options)
+				params: { name: params.name, muscle: '', type: '' },
+			};
+			axios
+				.request(options)
 				.then((response) => {
 					console.log(response);
-					setParams((prev) => ({ ...prev, exercises: response.data }))
+					setParams((prev) => ({ ...prev, exercises: response.data }));
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 		}
-
 	}, [params.name]);
-
 
 	return (
 		<form
@@ -59,6 +57,11 @@ const SearchBar = (props) => {
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 					className={styles['search-bar']}
+					onKeyDown={(e) => {
+						if (e.key === 'Enter') {
+							handleSubmit();
+						}
+					}}
 				></input>
 			</div>
 			<div>
@@ -66,7 +69,11 @@ const SearchBar = (props) => {
 			</div>
 			<div>
 				{params.exercises.map((exercise) => (
-					<SearchItem key={exercise.name} name={exercise.name} onAdd={() => onAdd(exercise)}/>
+					<SearchItem
+						key={exercise.name}
+						name={exercise.name}
+						onAdd={() => onAdd(exercise)}
+					/>
 					// <SearchList
 					// 	key={exercise.name}
 					// 	name={exercise.name}

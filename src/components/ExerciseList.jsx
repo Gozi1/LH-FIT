@@ -1,30 +1,25 @@
-import React from 'react'
+import React from 'react';
 import ExerciseItem from './ExerciseItem';
 const ExerciseList = (props) => {
-  const { exercises, onAdd, onRemove } = props;
-  const exercisesList = exercises.map((exercise) => {
-    return (
-      <div key={exercise.name}>
-          <ExerciseItem
-            name={exercise.name}
-            sets={3}
-            reps={10}
-            muscleGroup={exercise.muscle}
-            equipment={exercise.equipment}
-            instructions={exercise.instructions}
-            onAdd={() => onAdd(exercise)}
-            onRemove={() => onRemove(exercise.name)} />
-          <br />
-      </div>
-    )
-  }
-  )
+	const { exercises, onRemove } = props;
+	const exercisesList = exercises.map((exercise) => {
+		return (
+			<div key={exercise.name}>
+				<ExerciseItem
+					name={exercise.name}
+					sets={3}
+					reps={10}
+					muscleGroup={exercise.muscle}
+					equipment={exercise.equipment}
+					instructions={exercise.instructions}
+					onRemove={() => onRemove(exercise.name)}
+				/>
+				<br />
+			</div>
+		);
+	});
 
-  return (
-    <div>
-      {exercisesList}
-    </div>
-  )
-}
+	return <div>{exercisesList}</div>;
+};
 
-export default ExerciseList
+export default ExerciseList;
