@@ -68,3 +68,22 @@
   transform: rotate(180deg);
   transition: all ease 0.5s;
 }
+.set-reps-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+.exercise-on-remove{
+  cursor: pointer;
+  transition: all ease 0.5s;
+  &:hover{
+    transform: scale(1.6);
+    color: red;
+  }
+  // :hover{
+  //   scale: 1.2;
+  //   color: red;
+  // }
+}

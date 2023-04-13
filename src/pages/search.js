@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from '@/components/SearchBar';
 import { useState } from 'react';
 
+
 function HomePage() {
 	
 	const initialExercises = [
