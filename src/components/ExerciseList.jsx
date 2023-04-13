@@ -6,12 +6,10 @@ const ExerciseList = (props) => {
 		return (
 			<div key={exercise.name}>
 				<ExerciseItem
-					name={exercise.name}
+					exercise ={exercise}
 					sets={3}
 					reps={10}
-					muscleGroup={exercise.muscle}
-					equipment={exercise.equipment}
-					instructions={exercise.instructions}
+          weights={10}
 					onRemove={() => onRemove(exercise.name)}
 				/>
 				<br />
