@@ -13,9 +13,6 @@ const SearchBar = (props) => {
 
 	const [params, setParams] = useState({
 		name: '',
-		difficulty: '',
-		type: '',
-		muscle: '',
 		exercises: [],
 	});
 	const [input, setInput] = useState('');
@@ -30,7 +27,7 @@ const SearchBar = (props) => {
 			const options = {
 				method: 'GET',
 				url: 'http://localhost:8080/api/exercises',
-				params: { name: params.name, muscle: '', type: '' },
+				params: { search: params.name },
 			};
 			axios
 				.request(options)
