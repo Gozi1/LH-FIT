@@ -56,7 +56,22 @@ function HomePage() {
 		numberOfExercises: 6,
 	});
 	const [showResults, setShowResults] = useState(false);
-	const [exercises, setExercises] = useState(initialExercises);
+	//adds keys to exercises
+	const addKeys = (exercises, type = '') => {
+		const Obj = {
+			hypertropy: { sets: 5, reps: 9 },
+			strength: { sets: 3, reps: 10 },
+			endurance: { sets: 6, reps: 8 },
+			'': { sets: 5, reps: 2 },
+		};
+		return exercises.map((exercise) => {
+			exercise.sets = 5;
+			exercise.reps = 5;
+			exercise.weights = 0;
+			return exercise;
+		});
+	};
+	const [exercises, setExercises] = useState(addKeys(initialExercises, ''));
 
 	const reset = () => {
 		setParams((prevState) => ({
@@ -66,7 +81,12 @@ function HomePage() {
 			muscleGroup: '',
 		}));
 	};
-
+	//make a function that index the key value and the new value and updates the  state array
+	const updateArray = (index, key, value) => {
+		const newArray = [...exercises];
+		newArray[index][key] = value;
+		setExercises(newArray);
+	};
 	const handleRemove = (name) => {
 		const newExercises = exercises.filter((e) => e.name !== name);
 		setExercises(newExercises);
@@ -98,7 +118,11 @@ function HomePage() {
 			)}
 
 			{showResults && (
-				<ExerciseList exercises={exercises} onRemove={handleRemove} />
+				<ExerciseList
+					exercises={exercises}
+					onRemove={handleRemove}
+					updateArray={updateArray}
+				/>
 			)}
 		</div>
 	);

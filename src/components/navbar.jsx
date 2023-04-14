@@ -13,10 +13,12 @@ const navbar = () => {
 	const [user, setUser] = useState();
 
 	const [mobileMenu, setMobileMenu] = useState(false);
+
 	const handleLogout = () => {
-		removeCookie('user_id', { path: '/' });
+		removeCookie('user_id');
 		setUser(null);
-	}
+	};
+
 	useEffect(() => {
 		//  user in the nav menu credentials
 		if (cookies['user_id']) {
@@ -31,7 +33,7 @@ const navbar = () => {
 					setUser(response.data[0].name);
 				})
 				.catch((error) => {
-					console.log(error.response.data.message);
+					console.log(error.response);
 				});
 		}
 	});
@@ -72,33 +74,21 @@ const navbar = () => {
 					</li>
 					<li
 						onClick={() => {
-							router.push('/explore');
-							push('/search');
+							push('/explore');
 						}}
 					>
 						Explore
 					</li>
-					<li
-						onClick={() => {
-							router.push('/my-routines');
-						}}
-					>
-						My Routines
-					</li>
-					<li
-						onClick={() => {
-							router.push('/login');
-						}}
-					>
-						Login
-					</li>
-					<li
-						onClick={() => {
-							router.push('/signup');
-						}}
-					>
-						SignUp
-					</li>
+					{user && (
+						<li
+							onClick={() => {
+								push('/my-routines');
+							}}
+						>
+							My Routines
+						</li>
+					)}
+
 					{!user && (
 						<>
 							<li
@@ -117,13 +107,7 @@ const navbar = () => {
 							</li>
 						</>
 					)}
-					{user && (
-						<li
-							onClick={handleLogout}
-						>
-							SignOut
-						</li>
-					)}
+					{user && <li onClick={handleLogout}>SignOut</li>}
 				</ul>
 			</div>
 		</nav>
