@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useCookies } from 'react-cookie';
 import ExerciseItem from './ExerciseItem';
 
-const ExplorePage = () => {
-
+const MyRoutinesPage = () => {
   const [routines,setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const adminEmail = "sample1@sample.com";
-
+  const [cookies,setCookies] = useCookies(['user']);
+  const userEmail = decodeURIComponent(cookies.user);
 
   useEffect(() => {
 
     const fetchData = async () => {
-      if (adminEmail) {
+      if (userEmail) {
         const options = {
           method: 'GET',
           url: 'http://localhost:8080/api/routines/user',
-          params: { email: adminEmail }
+          params: { email: userEmail }
         }
 
         const routineResponses = await axios.request(options);
         const routineResults = routineResponses.data
-        console.log(routineResults)
         
         const enrollmentPromises = routineResults.map((routine) => axios.get(`http://localhost:8080/api/enrollments/routine/${routine.id}`));
         const enrollmentResponses = await Promise.all(enrollmentPromises);
@@ -38,12 +37,12 @@ const ExplorePage = () => {
         });
         
         setRoutines(mergedData);
+        setLoading(false);
         
       }
     }
 
     fetchData();
-    setLoading(false);
 
 	}, []);
 
@@ -53,7 +52,7 @@ const ExplorePage = () => {
 
   return(
     <div>
-      <h1>Explore:</h1>
+      <h1>Your Routine:</h1>
 
         {routines.map((routine) => (
           <div key={routine.name}>
@@ -80,4 +79,4 @@ const ExplorePage = () => {
   );
 }
 
-export default ExplorePage;
+export default MyRoutinesPage;
