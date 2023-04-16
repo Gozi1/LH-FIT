@@ -3,14 +3,19 @@ import styles from '../styles/search.module.css';
 import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
 import SearchItem from './SearchItem';
+import useVisualMode from '@/hooks/useVisualMode';
+import { Loading } from '@nextui-org/react';
 
+const SHOW = 'SHOW';
+const LOADING = 'LOADING';
+const ERROR = 'ERROR';
 const SearchBar = (props) => {
 	// search to api
 	// get a varible that saves whats in search bar
 	// make a function that handles submit request/takes response data (search by name - stretch)
 	//
 	const { onAdd } = props;
-
+	const { mode, transition } = useVisualMode('');
 	const [params, setParams] = useState({
 		name: '',
 		exercises: [],
@@ -24,9 +29,10 @@ const SearchBar = (props) => {
 
 	useEffect(() => {
 		if (params.name) {
+			transition(LOADING);
 			const options = {
 				method: 'GET',
-				url: 'http://localhost:8080/api/exercises',
+				url: 'http://localhost:8080/api/exercises/search',
 				params: { search: params.name },
 			};
 			axios
@@ -34,9 +40,11 @@ const SearchBar = (props) => {
 				.then((response) => {
 					console.log(response);
 					setParams((prev) => ({ ...prev, exercises: response.data }));
+					transition(SHOW);
 				})
 				.catch((error) => {
 					console.log(error);
+					transition(ERROR);
 				});
 		}
 	}, [params.name]);
@@ -65,7 +73,8 @@ const SearchBar = (props) => {
 				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
 			</div>
 			<div>
-				{params.exercises.map((exercise) => (
+				{mode ==='LOADING' && <Loading message= 'awaiting results'></Loading>}
+				{mode ==='SHOW'&& params.exercises.map((exercise) => (
 					<SearchItem
 						key={exercise.name}
 						name={exercise.name}
