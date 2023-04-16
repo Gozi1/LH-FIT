@@ -2,13 +2,12 @@ import ExerciseList from '@/components/ExerciseList';
 import WorkOutGen from '../components/WorkOutGen';
 import styles from '../styles/WorkOutGen.module.scss';
 import SearchBar from '@/components/SearchBar';
-import { BsCaretDown } from "react-icons/bs";
+
 import { useEffect, useState } from 'react';
 function HomePage() {
-	// const params = WorkOutGen();
-	// USEsTATE PARAM
+	
 
-	 //exercises should be a function based off params
+	//exercises should be a function based off params
 	const initialExercises = [
 		{
 			name: 'Single-Leg Press',
@@ -48,7 +47,6 @@ function HomePage() {
 		},
 	];
 
-  
 	const [params, setParams] = useState({
 		name: '',
 		difficulty: '',
@@ -57,59 +55,65 @@ function HomePage() {
 		numberOfExercises: 6,
 	});
 	const [showResults, setShowResults] = useState(false);
-  const [show,setShow] = useState(false)
-	const [exercises, setExercises] = useState(initialExercises)
+	//adds keys (sets,weights,reps) to exercises
+	const addKeys = (exercises, type = '') => {
+		const Obj = {
+			hypertropy: { sets: 5, reps: 9 },
+			strength: { sets: 3, reps: 10 },
+			endurance: { sets: 6, reps: 8 },
+			'': { sets: 5, reps: 2 },
+		};
+		return exercises.map((exercise) => {
+			exercise.sets = 5;
+			exercise.reps = 5;
+			exercise.weights = 0;
+			return exercise;
+		});
+	};
+	const [exercises, setExercises] = useState(addKeys(initialExercises, ''));
 
-  const reset = () =>{
-    setParams(prevState => ({
-			...prevState,
-			difficulty: '',
-      type: '',
-      muscleGroup: '',}))
-  }
-
+	//make a function that index the key value and the new value and updates the  state array
+	const updateArray = (index, key, value) => {
+		const newArray = [...exercises];
+		newArray[index][key] = value;
+		setExercises(newArray);
+	};
+	// function that removes exercise from the array
 	const handleRemove = (name) => {
-		const newExercises = exercises.filter((e) => e.name !== name) 
-		setExercises(newExercises)
-	}
-
+		const newExercises = exercises.filter((e) => e.name !== name);
+		setExercises(newExercises);
+	};
+	// function that adds exercise to the array
 	const handleAdd = (exercise) => {
-		console.log("HANDLE ADD EXERCISE", exercise)
-		setExercises((prev) => [...prev, exercise]) 
-	}
+		console.log('HANDLE ADD EXERCISE', exercise);
+		setExercises((prev) => [...prev, exercise]);
+	};
 
 	return (
-    
-		<div className = {styles['page-layout']}>
-      <WorkOutGen
-				params={params}
-				setParams={setParams}
-				setShowResults={setShowResults}
-        show = {show}
-        showResults = {showResults}
-        reset= {reset}
-			/>
+		<div className={styles['page-layout']}>
+			{!showResults && (
+				<WorkOutGen
+					params={params}
+					setParams={setParams}
+					setShowResults={setShowResults}
+				/>
+			)}
 			{showResults && (
 				<div className={styles['work-out-search-div']}>
-					<SearchBar exercises={exercises} params={params} setParams={setParams} onAdd={handleAdd}/>
-					
-					<BsCaretDown
-						className={
-							!show && styles['work-out-flipper']}
-						onClick={() => {
-							setShow(!show);
-						}}
+					<SearchBar
+						exercises={exercises}
+						params={params}
+						setParams={setParams}
+						onAdd={handleAdd}
 					/>
 				</div>
 			)}
 
-			
 			{showResults && (
-				<ExerciseList 
-				
-					onAdd={handleAdd}
+				<ExerciseList
 					exercises={exercises}
 					onRemove={handleRemove}
+					updateArray={updateArray}
 				/>
 			)}
 		</div>
