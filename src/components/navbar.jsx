@@ -3,9 +3,10 @@ import { BsList, BsX } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
-import axios from 'axios';
 import Image from 'next/image';
 import Logo from '../../public/logo.svg';
+import useFetchApi from '@/hooks/useFetchApi';
+
 const navbar = () => {
 	const { push } = useRouter();
 	const menuRef = useRef();
@@ -13,33 +14,30 @@ const navbar = () => {
 	const [user, setUser] = useState();
 
 	const [mobileMenu, setMobileMenu] = useState(false);
-
+	// function to logout user
 	const handleLogout = () => {
 		removeCookie('user_id');
 		setUser(null);
 	};
-
+	// Success function to set User
+	const successFunc = (data) => {
+		setUser(data[0].name);
+	};
+	// Error function to Print error message
+	const errorFunc = (error) => {
+		console.log(error.response);
+	};
+	//fetch data from api
+	const { mode } = useFetchApi(
+		cookies['user_id'],
+		null,
+		`http://localhost:8080/api/users/${cookies['user_id']}`,
+		'GET',
+		successFunc,
+		errorFunc
+	);
+	// function to close Nav menu when clicked outside
 	useEffect(() => {
-		//  user in the nav menu credentials
-		if (cookies['user_id']) {
-			const options = {
-				method: 'GET',
-				url: `http://localhost:8080/api/users/${cookies['user_id']}`,
-				// params: {id:cookies['user_id']}
-			};
-			axios
-				.request(options)
-				.then((response) => {
-					setUser(response.data[0].name);
-				})
-				.catch((error) => {
-					console.log(error.response);
-				});
-		}
-	});
-
-	useEffect(() => {
-		//handles the click outside of the menu
 		let handler = (e) => {
 			if (!menuRef.current.contains(e.target)) {
 				setMobileMenu(false);

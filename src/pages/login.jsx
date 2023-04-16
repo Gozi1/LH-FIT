@@ -2,9 +2,8 @@ import styles from '../styles/Users.module.scss';
 import Error from '@/components/Error';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import axios from 'axios';
 import { useRouter } from 'next/router';
-
+import useFetchApi from '@/hooks/useFetchApi';
 const login = () => {
 	const { push } = useRouter();
 	const [cookies, setCookie] = useCookies(['user_id']);
@@ -12,33 +11,30 @@ const login = () => {
 	const [password, setPassword] = useState('');
 	const [userOBJ, setUserOBJ] = useState();
 	const [error, setError] = useState();
-
-	useEffect(() => {
-		if (userOBJ) {
-			const options = {
-				method: 'POST',
-				url: 'http://localhost:8080/api/users/login',
-				params: { ...userOBJ },
-			};
-			axios
-				.request(options)
-				.then((response) => {
-					console.log(response.data);
-					setCookie('user_id', response.data, {
-						path: '/',
-					});
-					push('/');
-				})
-				.catch((error) => {
-					// console.log(error.response.data.message);
-					if (error.response?.data?.message) {
-						setError(error.response.data.message);
-					} else {
-						setError('Something went wrong');
-					}
-				});
+	// Success function to set cookie and redirect to home page
+	const successFunc = (data) => {
+		setCookie('user_id', data, {
+			path: '/',
+		});
+		push('/');
+	};
+	// Error function to set error message
+	const errorFunc = (error) => {
+		if (error.response?.data?.message) {
+			setError(error.response.data.message);
+		} else {
+			setError('Something went wrong');
 		}
-	}, [userOBJ]);
+	};
+	//fetch data from api
+	const { mode } = useFetchApi(
+		userOBJ,
+		{ email, password },
+		'http://localhost:8080/api/users/login',
+		'POST',
+		successFunc,
+		errorFunc
+	);
 
 	return (
 		<div className={styles['account']}>
