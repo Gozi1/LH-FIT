@@ -74,7 +74,7 @@ const errorFunc = (error) => {
 						// 	name={exercise.name}
 						// 	sets={3}
 						// 	reps={10}
-						// 	muscleGroup={exercise.muscle}
+						// 	muscle={exercise.muscle}
 						// 	equipment={exercise.equipment}
 						// 	instructions={exercise.instructions}
 						// 	onAdd={() => onAdd(exercise)}
