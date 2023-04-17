@@ -68,7 +68,7 @@ const MyRoutinesPage = () => {
                     exercise={enrollment.exercise}
                     sets={enrollment.sets}
                     reps={enrollment.reps}
-                    weights={enrollment.weights}
+                    weight={enrollment.weight}
                   />
                 <br />
                 </div>   

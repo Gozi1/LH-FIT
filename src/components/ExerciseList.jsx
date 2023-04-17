@@ -67,7 +67,7 @@ const ExerciseList = (props) => {
 					exercise={exercise}
 					sets={exercise.sets}
 					reps={exercise.reps}
-					weights={exercise.weights}
+					weight={exercise.weight}
 					edit={edit}
 					onRemove={() => onRemove(exercise.name)}
 					updateArray={updateArray}

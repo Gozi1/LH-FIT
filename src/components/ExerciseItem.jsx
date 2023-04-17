@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
 const CurrentExerciseItem = (props) => {
 	//props
-	const { id, exercise, sets, reps, weights, onAdd, onRemove, edit, index, updateArray } = props;
+	const { id, exercise, onAdd, onRemove, edit, index, updateArray } = props;
 	//destructure exercise
-	const { name, muscle, equipment, instructions } =
+	const { name, muscle, equipment, instructions, sets, reps, weight } =
 		exercise;
 
 	//returns a number list of instructions
@@ -44,7 +44,7 @@ const CurrentExerciseItem = (props) => {
 				<div className={styles['set-reps-container']}>
 					{!edit && (
 						<>
-							{weights > -1 && <p>Current Weight : {weights}</p>}
+							{weight > -1 && <p>Current Weight : {weight}</p>}
 							<p>Total Sets : {sets}</p>
 							<p>Target Reps : {reps}</p>
 						</>
@@ -75,17 +75,17 @@ const CurrentExerciseItem = (props) => {
 									}
 								}}
 							/>
-							{weights > -1 && (
+							{weight > -1 && (
 								<>
 									<p>Current Weight : </p>
 									<input
-										value={weights}
+										value={weight}
 										onChange={(e) => {
 											//prevents user from entering a negative number
 											if (e.target.value === '-') {
-												updateArray(index, 'weights', 0);
+												updateArray(index, 'weight', 0);
 											} else {
-												updateArray(index, 'weights', e.target.value);
+												updateArray(index, 'weight', e.target.value);
 											}
 										}}
 									/>

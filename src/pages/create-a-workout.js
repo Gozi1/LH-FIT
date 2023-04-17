@@ -55,7 +55,7 @@ function HomePage() {
 		numberOfExercises: 6,
 	});
 	const [showResults, setShowResults] = useState(false);
-	//adds keys (sets,weights,reps) to exercises
+	//adds keys (sets,weight,reps) to exercises
 	const addKeys = (exercises, type = '') => {
 		const Obj = {
 			hypertropy: { sets: 4, reps: 12 },
@@ -66,7 +66,7 @@ function HomePage() {
 		return exercises.map((exercise) => {
 			exercise.sets = 5;
 			exercise.reps = 5;
-			exercise.weights = 0;
+			exercise.weight = 0;
 			return exercise;
 		});
 	};
@@ -85,7 +85,7 @@ function HomePage() {
 	};
 	// function that adds exercise to the array
 	const handleAdd = (exercise) => {
-		const newExercise = {...exercise, sets: 0, reps: 0, weights: 0}
+		const newExercise = {...exercise, sets: 0, reps: 0, weight: 0}
 		console.log('HANDLE ADD EXERCISE', exercise);
 		setExercises((prev) => [...prev, newExercise]);
 	};
