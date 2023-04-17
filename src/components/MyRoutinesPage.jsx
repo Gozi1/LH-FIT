@@ -7,17 +7,18 @@ const MyRoutinesPage = () => {
   const [routines,setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [cookies,setCookies] = useCookies(['user']);
-  const userEmail = decodeURIComponent(cookies.user);
+  const [cookies,setCookies] = useCookies(['user_id', 'routine_id']);
+  const userId = cookies['user_id'];
+  console.log(userId);
 
   useEffect(() => {
 
     const fetchData = async () => {
-      if (userEmail) {
+      if (userId) {
         const options = {
           method: 'GET',
           url: 'http://localhost:8080/api/routines/user',
-          params: { email: userEmail }
+          params: { id: userId }
         }
 
         const routineResponses = await axios.request(options);
@@ -35,6 +36,8 @@ const MyRoutinesPage = () => {
             enrollments : [enrollments[routinePlaceHolder]]
           }
         });
+
+        console.log(mergedData);
         
         setRoutines(mergedData);
         setLoading(false);
@@ -62,12 +65,10 @@ const MyRoutinesPage = () => {
               {routine.enrollments[0].map((enrollment) => (
                 <div key={enrollment.exercise.name}>
                   <ExerciseItem
-                    name={enrollment.exercise.name}
+                    exercise={enrollment.exercise}
                     sets={enrollment.sets}
                     reps={enrollment.reps}
-                    muscleGroup={enrollment.exercise.muscle}
-                    equipment={enrollment.exercise.equipment}
-                    instructions={enrollment.exercise.instructions}
+                    weights={enrollment.weights}
                   />
                 <br />
                 </div>   

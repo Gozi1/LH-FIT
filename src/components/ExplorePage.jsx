@@ -7,17 +7,17 @@ const ExplorePage = () => {
   const [routines,setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const adminEmail = "sample1@sample.com";
+  const adminID = 1;
 
 
   useEffect(() => {
 
     const fetchData = async () => {
-      if (adminEmail) {
+      if (adminID) {
         const options = {
           method: 'GET',
           url: 'http://localhost:8080/api/routines/user',
-          params: { email: adminEmail }
+          params: { id: adminID }
         }
 
         const routineResponses = await axios.request(options);
