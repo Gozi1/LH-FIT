@@ -55,7 +55,9 @@ const signup = () => {
 		}
 	};
 	return (
-		<div className={styles['account']}>
+
+		<div className='sign-up-page'>
+			<div className={styles['account']}>
 			<h1>Sign Up</h1>
 			<div>
 				<label for='name'>Full Name</label>
@@ -83,6 +85,7 @@ const signup = () => {
 			</div>
 			<button onClick={handleSubmit}>Register</button>
 			{error && <Error message={error} onCancel={setError} />}
+		</div>
 		</div>
 	);
 };

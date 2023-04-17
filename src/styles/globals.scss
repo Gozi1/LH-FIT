@@ -15,9 +15,7 @@ main {
 	justify-content: center;
 	height: 100vh;
 	width: 100%;
-	padding-bottom: 50px;
-	// margin-bottom: 2.5rem;
-	// min-height: 100vh;
+	// padding-bottom: 50px;
 }
 .nav {
 	position: relative;
@@ -26,7 +24,7 @@ main {
 	width: 100%;
 	padding: 1rem 2rem;
 	box-shadow: 0 3px 2px rgb(168, 168, 168);
-	margin-bottom: 4rem;
+	// margin-bottom: 4rem;
 }
 .mobile-menu {
 	display: flex;
@@ -136,4 +134,27 @@ main {
   svg:hover{
     background-color: gray;
   }
+}
+
+.sign-up-page{
+	padding-top: 5rem;
+	width: 100vw;
+	height: 100vh;
+	position:absolute;
+	
+	background: url('https://images.unsplash.com/photo-1680792563719-288027b2a090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1193&q=80');
+	background-color: #1589d6;
+	background-size: cover;
+	// background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-blend-mode: color-burn;
+	
+	animation: scroll 5s ease-in  alternate infinite;
+}
+@keyframes scroll {
+
+	100%{
+	 background-position:200%;
+ }
+
 }
