@@ -5,37 +5,19 @@ import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import Image from 'next/image';
 import Logo from '../../public/logo.svg';
-import useFetchApi from '@/hooks/useFetchApi';
+import useGetUser from '../hooks/useGetUser';
 
 const navbar = () => {
 	const { push } = useRouter();
 	const menuRef = useRef();
 	const [cookies, removeCookie] = useCookies(['user_id']);
-	const [user, setUser] = useState();
-
+	const {user} = useGetUser()
 	const [mobileMenu, setMobileMenu] = useState(false);
 	// function to logout user
 	const handleLogout = () => {
 		removeCookie('user_id');
-		setUser(null);
 	};
-	// Success function to set User
-	const successFunc = (data) => {
-		setUser(data[0].name);
-	};
-	// Error function to Print error message
-	const errorFunc = (error) => {
-		console.log(error.response);
-	};
-	//fetch data from api
-	const { mode } = useFetchApi(
-		cookies['user_id'],
-		null,
-		`http://localhost:8080/api/users/${cookies['user_id']}`,
-		'GET',
-		successFunc,
-		errorFunc
-	);
+	
 	// function to close Nav menu when clicked outside
 	useEffect(() => {
 		let handler = (e) => {
