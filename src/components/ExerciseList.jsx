@@ -3,7 +3,7 @@ import ExerciseItem from './ExerciseItem';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 const ExerciseList = (props) => {
-	const { exercises, onRemove, type, updateArray } = props;
+	const { exercises, sets, reps, weights, onRemove, type, updateArray } = props;
 	const [edit, setEdit] = useState(false);
 	
 	const [cookies] = useCookies(['user_id']);
@@ -24,6 +24,9 @@ const ExerciseList = (props) => {
 			<div key={exercise.name}>
 				<ExerciseItem
 					exercise={exercise}
+					sets={exercise.sets}
+					reps={exercise.reps}
+					weights={exercise.weights}
 					edit={edit}
 					onRemove={() => onRemove(exercise.name)}
 					updateArray={updateArray}

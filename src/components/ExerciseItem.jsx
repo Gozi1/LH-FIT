@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
 const CurrentExerciseItem = (props) => {
 	//props
-	const { id, exercise, onAdd, onRemove, edit, index, updateArray } = props;
+	const { id, exercise, sets, reps, weights, onAdd, onRemove, edit, index, updateArray } = props;
 	//destructure exercise
-	const { name, muscle, equipment, instructions, sets, reps, weights } =
+	const { name, muscle, equipment, instructions } =
 		exercise;
 
 	//returns a number list of instructions

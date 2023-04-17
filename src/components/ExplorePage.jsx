@@ -22,7 +22,6 @@ const ExplorePage = () => {
 
         const routineResponses = await axios.request(options);
         const routineResults = routineResponses.data
-        console.log(routineResults)
         
         const enrollmentPromises = routineResults.map((routine) => axios.get(`http://localhost:8080/api/enrollments/routine/${routine.id}`));
         const enrollmentResponses = await Promise.all(enrollmentPromises);
@@ -63,12 +62,10 @@ const ExplorePage = () => {
               {routine.enrollments[0].map((enrollment) => (
                 <div key={enrollment.exercise.name}>
                   <ExerciseItem
-                    name={enrollment.exercise.name}
+                    exercise={enrollment.exercise}
                     sets={enrollment.sets}
                     reps={enrollment.reps}
-                    muscleGroup={enrollment.exercise.muscle}
-                    equipment={enrollment.exercise.equipment}
-                    instructions={enrollment.exercise.instructions}
+                    weights={enrollment.weights}
                   />
                 <br />
                 </div>   
