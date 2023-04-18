@@ -3,13 +3,13 @@ import ExerciseItem from './ExerciseItem';
 import { useState,useEffect } from 'react';
 import useGetUser from '../hooks/useGetUser';
 import { useCookies } from 'react-cookie';
-
+import Error from './Error';
 const ExerciseList = (props) => {
 	const { exercises, onRemove, type, updateArray } = props;
 	const [edit, setEdit] = useState(false);
 	// const {user} = useGetUser()
 	const [routine, setRoutine] = useState();
-	
+	const [error, setError] = useState(null);
 	const [cookies, setCookie] = useCookies(['user_id', 'routine_id']);
 	const [user, setUser] = useState(null);
 	useEffect(() => {
@@ -29,7 +29,14 @@ const ExerciseList = (props) => {
 	};
 
 	const handleSubmit = async (event) => {
-		if(routine)
+		if(routine === undefined || routine.name === undefined || routine.name === ''){
+			setError('Please enter a name for your routine');
+			return;
+		}
+		else if(routine.name.length > 50 ){
+			setError('Routine name must be less than 50 characters');
+			return;
+		}
 		async function postData(url = '', data = {}) {
 			const response = await fetch(url, {
 				method: 'POST',
@@ -91,6 +98,7 @@ const ExerciseList = (props) => {
 			{exercisesList}
 			<button onClick={() => setEdit(!edit)}>Edit</button>
 			{user && <button onClick={handleSubmit}>Submit</button>}
+			{error && <Error message={error} onCancel={setError} />}
 		</div>
 	);
 };
