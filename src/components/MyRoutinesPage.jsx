@@ -77,7 +77,7 @@ const MyRoutinesPage = () => {
                 </div>
               ))}
           </div>
-        ))}
+        )).reverse()}
 
       </div>
   );

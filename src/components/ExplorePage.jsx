@@ -71,7 +71,7 @@ const ExplorePage = () => {
                 </div>   
               ))}
           </div>
-        ))}
+        )).reverse()}
 
       </div>
   );

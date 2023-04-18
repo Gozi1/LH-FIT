@@ -47,7 +47,7 @@ const errorFunc = (error) => {
 		>
 			<div className={styles['search-bar']}>
 				<input
-					placeholder='Search by exercise name'
+					placeholder='search by exercise name or muscle group'
 					type='text'
 					value={input}
 					onChange={(e) => setInput(e.target.value)}

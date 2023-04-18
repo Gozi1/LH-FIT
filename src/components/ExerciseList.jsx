@@ -90,7 +90,7 @@ const ExerciseList = (props) => {
 				<br />
 			</div>
 		);
-	});
+	}).reverse();
 
 	return (
 		<div>
