@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from 'react-cookie';
-import ExerciseItem from './ExerciseItem';
+import EnrollmentItem from './EnrollmentItem';
 
 const MyRoutinesPage = () => {
   const [routines,setRoutines] = useState([]);
+  const [enrollment,setEnrollment] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   const [cookies,setCookies] = useCookies(['user_id', 'routine_id']);
   const userId = cookies['user_id'];
-  console.log(userId);
 
   useEffect(() => {
 
@@ -63,15 +64,17 @@ const MyRoutinesPage = () => {
             <h4>Created at: {routine.createdAt}</h4>
             <h4>Created by: {routine.user.name}</h4>
               {routine.enrollments[0].map((enrollment) => (
-                <div key={enrollment.exercise.name}>
-                  <ExerciseItem
+                <div key={enrollment.id}>
+                  <EnrollmentItem
                     exercise={enrollment.exercise}
                     sets={enrollment.sets}
                     reps={enrollment.reps}
                     weight={enrollment.weight}
+                    enrollment={enrollment}
+                    setEnrollment={setEnrollment}
                   />
                 <br />
-                </div>   
+                </div>
               ))}
           </div>
         ))}
