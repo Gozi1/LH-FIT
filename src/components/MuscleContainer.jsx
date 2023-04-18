@@ -5,7 +5,7 @@ const MuscleContainer = (props) => {
   const {handleParams} = props
   const options = ['Abdominals', 'Abductors', 'Adductors', 'Biceps', 'Calves', 'Chest', 'Glutes', 'Hamstrings', 'Lats','Lower_back', 'Middle_back', 'Neck', 'Quadriceps', 'Traps', 'Triceps', ''];
   const onOptionChangeHandler = (event) => {
-      handleParams('muscleGroup',event.target.value)
+      handleParams('muscle',event.target.value)
   }
   return (
    

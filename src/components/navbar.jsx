@@ -8,7 +8,7 @@ import Logo from '../../public/logo.svg';
 import useGetUser from '../hooks/useGetUser';
 
 const navbar = () => {
-	const { push } = useRouter();
+	const { reload,push,pathname } = useRouter();
 	const menuRef = useRef();
 	const [cookies, removeCookie] = useCookies(['user_id']);
 	const {user} = useGetUser()
@@ -47,7 +47,13 @@ const navbar = () => {
 					{user && <li>Hello {user}</li>}
 					<li
 						onClick={() => {
-							push('/create-a-workout');
+							if(pathname !== '/create-a-workout'){
+								push('/create-a-workout');
+							}
+							else{
+								reload('/create-a-workout')
+							}
+							
 						}}
 					>
 						Create Workout

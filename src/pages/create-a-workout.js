@@ -4,6 +4,7 @@ import styles from '../styles/WorkOutGen.module.scss';
 import SearchBar from '@/components/SearchBar';
 
 import { useEffect, useState } from 'react';
+import useFetchApi from '@/hooks/useFetchApi';
 function HomePage() {
 	
 
@@ -48,14 +49,13 @@ function HomePage() {
 	];
 
 	const [params, setParams] = useState({
-		name: '',
 		difficulty: '',
 		type: '',
-		muscleGroup: '',
-		numberOfExercises: 6,
+		muscle: '',
+		// numberOfExercises: 6,
 	});
 	const [showResults, setShowResults] = useState(false);
-	//adds keys (sets,weights,reps) to exercises
+	//adds keys (sets,weight,reps) to exercises
 	const addKeys = (exercises, type = '') => {
 		const Obj = {
 			hypertropy: { sets: 5, reps: 9 },
@@ -66,12 +66,20 @@ function HomePage() {
 		return exercises.map((exercise) => {
 			exercise.sets = 5;
 			exercise.reps = 5;
-			exercise.weights = 0;
+			exercise.weight = 0;
 			return exercise;
 		});
 	};
-	const [exercises, setExercises] = useState(addKeys(initialExercises, ''));
+	const [exercises, setExercises] = useState();
 
+	
+	const sucessFunc = (data) => {
+		console.log('DATA', data);
+		setExercises(addKeys(data, params.type));
+	}
+	const errorFunc = (error) => {
+		console.log('ERROR', error);
+	}
 	//make a function that index the key value and the new value and updates the  state array
 	const updateArray = (index, key, value) => {
 		const newArray = [...exercises];
@@ -88,6 +96,13 @@ function HomePage() {
 		console.log('HANDLE ADD EXERCISE', exercise);
 		setExercises((prev) => [...prev, exercise]);
 	};
+	// fetches the exercises from the api
+	const {mode} = useFetchApi(showResults,
+		params,
+		'http://localhost:8080/api/exercises',
+		'GET',
+		sucessFunc,
+		errorFunc)
 
 	return (
 		<div className={styles['page-layout']}>
@@ -98,7 +113,7 @@ function HomePage() {
 					setShowResults={setShowResults}
 				/>
 			)}
-			{showResults && (
+			{mode ==='SHOW'&& showResults && (
 				<div className={styles['work-out-search-div']}>
 					<SearchBar
 						exercises={exercises}
@@ -109,7 +124,7 @@ function HomePage() {
 				</div>
 			)}
 
-			{showResults && (
+			{mode ==='SHOW'&& showResults && (
 				<ExerciseList
 					exercises={exercises}
 					onRemove={handleRemove}

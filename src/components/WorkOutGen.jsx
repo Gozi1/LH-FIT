@@ -17,7 +17,7 @@ const WorkOutGen = (props) => {
 		if (
 			params.difficulty == '' ||
 			params.type == '' ||
-			params.muscleGroup == ''
+			params.muscle == ''
 		) {
 			setError('Please select from all categories before submitting');
 		} else {

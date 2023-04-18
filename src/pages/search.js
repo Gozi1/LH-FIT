@@ -50,7 +50,7 @@ function HomePage() {
 		name: '',
 		difficulty: '',
 		type: '',
-		muscleGroup: '',
+		muscle: '',
 		numberOfExercises: 6,
 	});
 	return (
