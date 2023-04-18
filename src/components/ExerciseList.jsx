@@ -4,7 +4,9 @@ import { useState,useEffect } from 'react';
 import useGetUser from '../hooks/useGetUser';
 import { useCookies } from 'react-cookie';
 import Error from './Error';
+import { useRouter } from 'next/router';
 const ExerciseList = (props) => {
+	const {push} = useRouter();
 	const { exercises, onRemove, type, updateArray } = props;
 	const [edit, setEdit] = useState(false);
 	// const {user} = useGetUser()
@@ -63,6 +65,7 @@ const ExerciseList = (props) => {
 				// console.log(exerciseOBJ);
 				const response = await postData(enrollmentURL, exerciseOBJ);
 				console.log(response);
+				push('/my-routines')
 			});
 
 		}
