@@ -47,19 +47,17 @@ const errorFunc = (error) => {
 		>
 			<div className={styles['search-bar']}>
 				<input
-					placeholder='Search by muscle group'
+					placeholder='search by exercise name or muscle group'
 					type='text'
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
-					className={styles['search-bar']}
+				  className={styles['search-bar-input']}
 					onKeyDown={(e) => {
 						if (e.key === 'Enter') {
 							handleSubmit();
 						}
 					}}
-				></input>
-			</div>
-			<div>
+				/>
 				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
 			</div>
 			<div>
@@ -76,7 +74,7 @@ const errorFunc = (error) => {
 						// 	name={exercise.name}
 						// 	sets={3}
 						// 	reps={10}
-						// 	muscleGroup={exercise.muscle}
+						// 	muscle={exercise.muscle}
 						// 	equipment={exercise.equipment}
 						// 	instructions={exercise.instructions}
 						// 	onAdd={() => onAdd(exercise)}

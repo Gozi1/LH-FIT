@@ -7,22 +7,21 @@ const ExplorePage = () => {
   const [routines,setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const adminEmail = "sample1@sample.com";
+  const adminID = 1;
 
 
   useEffect(() => {
 
     const fetchData = async () => {
-      if (adminEmail) {
+      if (adminID) {
         const options = {
           method: 'GET',
           url: 'http://localhost:8080/api/routines/user',
-          params: { email: adminEmail }
+          params: { id: adminID }
         }
 
         const routineResponses = await axios.request(options);
         const routineResults = routineResponses.data
-        console.log(routineResults)
         
         const enrollmentPromises = routineResults.map((routine) => axios.get(`http://localhost:8080/api/enrollments/routine/${routine.id}`));
         const enrollmentResponses = await Promise.all(enrollmentPromises);
@@ -63,18 +62,16 @@ const ExplorePage = () => {
               {routine.enrollments[0].map((enrollment) => (
                 <div key={enrollment.exercise.name}>
                   <ExerciseItem
-                    name={enrollment.exercise.name}
+                    exercise={enrollment.exercise}
                     sets={enrollment.sets}
                     reps={enrollment.reps}
-                    muscleGroup={enrollment.exercise.muscle}
-                    equipment={enrollment.exercise.equipment}
-                    instructions={enrollment.exercise.instructions}
+                    weight={enrollment.weight}
                   />
                 <br />
                 </div>   
               ))}
           </div>
-        ))}
+        )).reverse()}
 
       </div>
   );

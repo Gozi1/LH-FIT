@@ -2,12 +2,15 @@ import React from 'react';
 import styles from '../styles/Exercise.module.scss';
 import { useState } from 'react';
 import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
-const CurrentExerciseItem = (props) => {
+const CurrentEnrollmentItem = (props) => {
 	//props
-	const { id, exercise, onAdd, onRemove, edit, index, updateArray } = props;
+	const { id, exercise, enrollment, setEnrollment } = props;
 	//destructure exercise
-	const { name, muscle, equipment, instructions, sets, reps, weight } =
+	const { name, muscle, equipment, instructions } =
 		exercise;
+	const { sets, reps, weight} = enrollment;
+
+	const [edit, setEdit] = useState(false);
 
 	//returns a number list of instructions
 	const instructionHtml = instructions.split(',').map((sentence, index) => {
@@ -21,20 +24,37 @@ const CurrentExerciseItem = (props) => {
 		);
 	});
 	const [toggleInstruction, setToggleInstruction] = useState(false);
+
+	//make a function that index the key value and the new value and updates the  state array
+	const updateArray = (key, value) => {
+		let newArray = enrollment;
+		newArray[key] = value;
+		setEnrollment(newArray);
+	};
+
+	function handleClick() {
+		setEdit(!edit);
+	}
+
+	const handleSubmit = async (event) => {
+
+		// Make API call with project value
+    fetch(`http://localhost:8080/api/enrollments/enrollment/${enrollment.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(enrollment),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      return response.json();
+    }).catch((error) => {
+      // Handle error
+    });
+
+	};
+
 	return (
 		<div className={styles['current-exercise-container']}>
-			<div className={styles['exercise-positioner']}>
-				<h3>{name}</h3>
-				{onAdd && <BsPatchPlus onClick={() => onAdd(id)} />}
-				{onRemove && (
-					<h1
-						className={styles['exercise-on-remove']}
-						onClick={() => onRemove(id)}
-					>
-						-
-					</h1>
-				)}
-			</div>
 
 			<div className={styles['exercise-positioner']}>
 				<div>
@@ -57,9 +77,9 @@ const CurrentExerciseItem = (props) => {
 								onChange={(e) => {
 									//prevents user from entering a negative number
 									if (e.target.value === '-') {
-										updateArray(index, 'sets', 0);
+										updateArray('sets', 0);
 									} else {
-										updateArray(index, 'sets', e.target.value);
+										updateArray('sets', parseInt(e.target.value));
 									}
 								}}
 							/>
@@ -69,9 +89,9 @@ const CurrentExerciseItem = (props) => {
 								onChange={(e) => {
 									//prevents user from entering a negative number
 									if (e.target.value === '-') {
-										updateArray(index, 'reps', 0);
+										updateArray('reps', 0);
 									} else {
-										updateArray(index, 'reps', e.target.value);
+										updateArray('reps', parseInt(e.target.value));
 									}
 								}}
 							/>
@@ -83,9 +103,9 @@ const CurrentExerciseItem = (props) => {
 										onChange={(e) => {
 											//prevents user from entering a negative number
 											if (e.target.value === '-') {
-												updateArray(index, 'weight', 0);
+												updateArray('weight', 0);
 											} else {
-												updateArray(index, 'weight', e.target.value);
+												updateArray('weight', parseInt(e.target.value));
 											}
 										}}
 									/>
@@ -112,8 +132,10 @@ const CurrentExerciseItem = (props) => {
 					{instructionHtml}
 				</article>
 			</div>
+			<button onClick={handleClick}>Edit</button>
+      <button onClick={handleSubmit}>Submit</button>
 		</div>
 	);
 };
 
-export default CurrentExerciseItem;
+export default CurrentEnrollmentItem;
