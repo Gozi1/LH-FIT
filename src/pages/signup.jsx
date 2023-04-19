@@ -55,37 +55,33 @@ const signup = () => {
 		}
 	};
 	return (
-
 		<div className='sign-up-page'>
 			<div className={styles['account']}>
-			<h1>Sign Up</h1>
-			<div>
-				<label for='name'>Full Name</label>
-				<input
-					type='name'
-					placeholder='Enter First and Last Name'
-					onChange={(e) => setName(e.target.value)}
-				/>
+				<h1>SignUp</h1>
+				<div>
+					<input
+						type='name'
+						placeholder='Full Name'
+						onChange={(e) => setName(e.target.value)}
+					/>
+				</div>
+				<div>
+					<input
+						type='email'
+						placeholder='E-mail'
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+				</div>
+				<div>
+					<input
+						type='password'
+						placeholder='Password'
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</div>
+				<button onClick={handleSubmit}>Register</button>
+				{error && <Error message={error} onCancel={setError} />}
 			</div>
-			<div>
-				<label for='email'>Email</label>
-				<input
-					type='email'
-					placeholder='Enter your email'
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-			</div>
-			<div>
-				<label for='longURL'>Password</label>
-				<input
-					type='password'
-					placeholder='Create your password'
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-			</div>
-			<button onClick={handleSubmit}>Register</button>
-			{error && <Error message={error} onCancel={setError} />}
-		</div>
 		</div>
 	);
 };

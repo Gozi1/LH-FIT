@@ -40,7 +40,6 @@ const login = () => {
 		<div className={styles['account']}>
 			<h1>Login</h1>
 			<div>
-				<label for='email'>Email</label>
 				<input
 					type='email'
 					name='email'
@@ -49,7 +48,6 @@ const login = () => {
 				/>
 			</div>
 			<div>
-				<label for='Password'>Password</label>
 				<input
 					type='password'
 					name='password'

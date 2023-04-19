@@ -1,10 +1,11 @@
 import { React, useEffect, useState } from 'react';
-import styles from '../styles/search.module.css';
+import styles from '../styles/search.module.scss';
 import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
 import SearchItem from './SearchItem';
 import useFetchApi from '@/hooks/useFetchApi';
 import { Loading } from '@nextui-org/react';
+import SearchList from './SearchList';
 
 const SearchBar = (props) => {
 	// search to api
@@ -40,6 +41,7 @@ const errorFunc = (error) => {
 	);
 
 	return (
+		<div>
 		<form
 			className={styles['search-form']}
 			onSubmit={(e) => e.preventDefault()}
@@ -60,32 +62,14 @@ const errorFunc = (error) => {
 				/>
 				<BsSearch className={styles['search-button']} onClick={handleSubmit} />
 			</div>
-			<div>
-				{mode === 'LOADING' && <Loading message='awaiting results'></Loading>}
-				{mode === 'SHOW' && 
-					params.exercises.map((exercise) => (
-						<SearchItem
-							key={exercise.name}
-							name={exercise.name}
-							onAdd={() => onAdd(exercise)}
-						/>
-						// <SearchList
-						// 	key={exercise.name}
-						// 	name={exercise.name}
-						// 	sets={3}
-						// 	reps={10}
-						// 	muscle={exercise.muscle}
-						// 	equipment={exercise.equipment}
-						// 	instructions={exercise.instructions}
-						// 	onAdd={() => onAdd(exercise)}
-						// 	onRemove={() => onRemove(exercise.name)}
-						//  />
-						// <div key={i} className={'search-result'}>
-						// 	{exercise.name}
-						// </div>
-					))}
-			</div>
+			
 		</form>
+		{mode === 'LOADING' && <Loading message='awaiting results'></Loading>}
+		
+				{mode === 'SHOW' && 
+					<SearchList exercises ={params.exercises} onAdd = {onAdd} />
+				}
+		</div>
 	);
 };
 

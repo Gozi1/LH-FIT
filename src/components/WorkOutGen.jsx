@@ -4,7 +4,6 @@ import MuscleContainer from './MuscleContainer';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Error from './Error';
-import { Grid, Tooltip } from '@nextui-org/react';
 
 //props need (setCurrentParams)
 // we choose a couple of params based on the user
@@ -58,15 +57,7 @@ const WorkOutGen = (props) => {
 			<br />
 			<h1>What is your training goal?</h1>
 			<div className={styles['work-out-container-type']}>
-				{/* <Tooltip
-					content={
-						'SHOW US SOME EFFORT! Strength training involves lower reps with higher weight. This form of training is used to make the muscle exert a maximal amount of force and ultimately allow the muscle to move more weight the next workout.'
-					}
-					// color="default"
-					className = {styles['tooltip']}
-					placement='top'
-					// rounded='false'
-				> */}
+			
 					<Button
 						name='Strength'
 						keyName='type'
@@ -74,13 +65,7 @@ const WorkOutGen = (props) => {
 						params={params}
 						tooltip = 'SHOW US SOME EFFORT! Strength training involves lower reps with higher weight. This form of training is used to make the muscle exert a maximal amount of force and ultimately allow the muscle to move more weight the next workout.'
 					/>
-				{/* </Tooltip> */}
-				{/* <Tooltip
-					content={
-						'NO PAIN NO GAIN! Endurance utilizes a very high rep range to build muscular stamina. This form of resistance training allows the muscle to last longer under stress. Best method to train for prolonged activities such as marathons.'
-					}
-					color='invert'
-				> */}
+			
 					<Button
 						name='Endurance'
 						keyName='type'
@@ -88,13 +73,7 @@ const WorkOutGen = (props) => {
 						params={params}
 						tooltip = 'NO PAIN NO GAIN! Endurance utilizes a very high rep range to build muscular stamina. This form of resistance training allows the muscle to last longer under stress. Best method to train for prolonged activities such as marathons.'
 					/>
-				{/* </Tooltip> */}
-				{/* <Tooltip
-					content={
-						'SLOW IT DOWN! Hypertrophy is a training method that  utlizes lighter weight with a longer eccentric (negative) to provide maximum muscle growth stimulation. Best option for building muscle mass.'
-					}
-					color='invert'
-				> */}
+				
 					<Button
 						name='Hypertrophy'
 						keyName='type'
@@ -102,11 +81,9 @@ const WorkOutGen = (props) => {
 						params={params}
 						tooltip ='SLOW IT DOWN! Hypertrophy is a training method that  utlizes lighter weight with a longer eccentric (negative) to provide maximum muscle growth stimulation. Best option for building muscle mass.'
 					/>
-				{/* </Tooltip> */}
+				
 			</div>
-			{/*
-      Stretch Feature maybe .... 
-      <div className={styles['equipment-container']}></div> */}
+			
 			<br />
 			<h1>Select the muscle you would like to work on </h1>
 			<MuscleContainer handleParams={handleParams} />
@@ -116,9 +93,7 @@ const WorkOutGen = (props) => {
 				<button className={styles['submit']} onClick={handleSubmit}>
 					Submit
 				</button>
-				{/* {showResults && <button className={styles['reset']} onClick={reset}>
-					Reset
-				</button>} */}
+				
 			</div>
 			<br />
 			{error && <Error message={error} onCancel={setError} />}

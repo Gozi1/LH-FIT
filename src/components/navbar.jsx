@@ -33,8 +33,9 @@ const navbar = () => {
 			<div className='mobile-menu'>
 				{!mobileMenu && <BsList onClick={() => setMobileMenu(true)} />}
 				{mobileMenu && <BsX onClick={() => setMobileMenu(false)} />}
-				<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="300.000000pt" height="291.000000pt" viewBox="0 0 300.000000 291.000000"
+				<p className='mobile-icon'>Menu</p>
+				<svg className='Logo' version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="auto" height="5rem" viewBox="0 0 300.000000 291.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.10, written by Peter Selinger 2001-2011
@@ -301,7 +302,7 @@ c15 12 19 2 6 -18 -5 -8 -12 -8 -26 2 -11 9 -15 18 -10 27 7 10 9 9 12 -5 3
 </g>
 </svg>
 
-				<p className='mobile-icon'>Menu</p>
+				
 
 				<ul className={mobileMenu ? 'mobile-menu-show' : 'mobile-menu-hide'}>
 					{user && <li>Hello {user}</li>}
