@@ -5,8 +5,8 @@
   $ease: cubic-bezier(0.215, 0.61, 0.355, 1);
   $font-family: monospace;
   $color-primary: white;
-  $color-secondary: black;
-  $color-tertiary: dodgerblue;
+  $color-secondary: blue;
+  $color-tertiary: black;
   $shadow: rgba(0, 0, 0, 0.1);
   $space: 1rem;
 
@@ -37,6 +37,27 @@
   width: 35rem;
   box-shadow: $shadow 4px 4px;
 }
+.button::before {
+  content: attr(data-text); 
+  position:absolute;
+  font-size: 1rem;
+ 
+  top:100%;
+  transform:translate(0%, -130%);
+  z-index: 10;
+  /* basic styles */
+  width:250px;
+  padding:10px;
+  border-radius:10px;
+  background:$color-primary;
+  color: $color-tertiary;
+  text-align:center;
+
+  display:none; /* hide by default */
+}
+.button:hover::before {
+  display:block; /* show on hover */
+}
 .button{
   flex-grow: 1;
   cursor: pointer;
@@ -45,8 +66,8 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
-  color: $color-secondary;
+  border: $border-size solid blue;
+  color: $color-tertiary;
   background-color: $color-primary;
   font-size: 1.5rem;
   font-family: $font-family;
@@ -55,7 +76,7 @@
 }
 
 .work-out-container-type .button + button {
-  border-left: $border-size solid black;
+  border-left: $border-size solid blue;
   margin-left: calc($border-size * -1);
 }
 .button:hover,
@@ -82,7 +103,7 @@
 }
 .work-out-container-type:hover  .focus:not(:hover) {
   flex-grow: 1;
-  color: $color-secondary;
+  color: $color-tertiary;
   background-color: $color-primary;
   outline-color: $color-tertiary;
 }
@@ -91,7 +112,7 @@
 }
 
 .work-out-container-difficult .button + button {
-  border-left: $border-size solid black;
+  border-left: $border-size solid blue;
   margin-left: calc($border-size * -1);
 }
 .button:hover,
@@ -108,7 +129,7 @@
 }
 .work-out-container-difficulty:hover  .focus:not(:hover) {
   flex-grow: 1;
-  color: $color-secondary;
+  color: $color-tertiary;
   background-color: $color-primary;
   outline-color: $color-tertiary;
 }
@@ -129,7 +150,7 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
+  border: $border-size solid blue;
   color: $color-secondary;
   background-color: $color-primary;
   font-size: 1.5rem;
@@ -158,8 +179,8 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
-  color: $color-secondary;
+  border: $border-size solid blue;
+  color: $color-tertiary;
   background-color: $color-primary;
   font-size: 1.5rem;
   font-family: $font-family;
@@ -185,8 +206,8 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
-  color: $color-secondary;
+  border: $border-size solid blue;
+  color: $color-tertiary;
   background-color: $color-primary;
   font-size: 1.5rem;
   font-family: $font-family;
@@ -219,3 +240,7 @@
   transition: all ease 0.5s;
 }
 
+// .tooltip,.tooltip *{
+//   color: $color-secondary;
+//   background-color: $color-primary;
+// }

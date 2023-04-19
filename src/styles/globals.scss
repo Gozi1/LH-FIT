@@ -4,6 +4,8 @@
 	padding: 0;
 	margin: 0;
 	font-family: monospace;
+	color:white;
+	background-color: #000;
 }
 a, a:hover, a:focus, a:active {
   text-decoration: none;
@@ -35,18 +37,13 @@ main {
 		z-index: -10;
 	}
 	svg {
-		font-size: 2rem;
-		border: 1px solid transparent;
-		border-radius: 5rem;
+		font-size: 2.5rem;
+		border: none;
 	}
 	svg:hover {
-		background-color: #000;
-		color: #fff;
+		fill: #0019fa;
 	}
-	li:hover {
-		color: white;
-		background-color: #000;
-	}
+
 }
 .mobile-icon {
 	margin-left: 0.5rem;
@@ -63,7 +60,6 @@ main {
 	display: flex;
 	flex-direction: column;
 	list-style: none;
-	background-color: white;
 	box-shadow: 0 3px 2px rgb(114, 114, 114);
 	animation: slide-in 0.5s forwards;
 	li {
@@ -72,9 +68,12 @@ main {
 		cursor: pointer;
 		border-bottom: 1px solid rgb(114, 114, 114);
 	}
+	li:first-child{
+		border-top: 3px solid rgb(114, 114, 114);
+	}
 	li:hover {
-		color: white;
-		background-color: #000;
+		color: #000;
+		background-color: #fff;
 	}
 }
 
