@@ -5,6 +5,8 @@ import useGetUser from '../hooks/useGetUser';
 import { useCookies } from 'react-cookie';
 import Error from './Error';
 import { useRouter } from 'next/router';
+import styles from '../styles/Exercise.module.scss';
+
 const ExerciseList = (props) => {
 	const {push} = useRouter();
 	const { exercises, onRemove, type, updateArray } = props;
@@ -93,15 +95,17 @@ const ExerciseList = (props) => {
 	}).reverse();
 
 	return (
-		<div>
-				<label>
-					Name:
-					<input type="text" name="name" onChange={setRoutineObject} />
-				</label>
-			{exercisesList}
-			<button onClick={() => setEdit(!edit)}>Edit</button>
-			{user && <button onClick={handleSubmit}>Submit</button>}
+		<div className={styles['exercise-list']}>
+
+		<input type="text" name="name" onChange={setRoutineObject}  placeholder='Name'/>
+		<div className={styles['button-container']}>
+			<button className={styles['edit']} onClick={() => setEdit(!edit)}>Edit</button>
+			{user && <button className={styles['submit']} onClick={handleSubmit}>Submit</button>}
+			</div>
 			{error && <Error message={error} onCancel={setError} />}
+			{exercisesList}
+			
+			
 		</div>
 	);
 };

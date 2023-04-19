@@ -56,7 +56,7 @@
   font-size: 1rem;
  
   top:100%;
-  transform:translate(0%, -130%);
+  transform:translate(0%, -200%);
   z-index: 10;
   /* basic styles */
   width:250px;
@@ -156,35 +156,7 @@
   width: 50rem;
   justify-content: center;
 }
-.reset{
-  flex-grow: 1;
-  cursor: pointer;
-  position: relative;
-  padding:
-    calc($space / 1.125)
-    $space
-    $space;
-  border: $border-size solid blue;
-  color: $color-secondary;
-  background-color: $color-primary;
-  font-size: 1.5rem;
-  font-family: $font-family;
-  text-shadow: $shadow 2px 2px;
-  
-  transition: width ease-in 0.3s;
-}
 
-
-.reset:active {
-  transform: translateY($border-size);
-}
-.reset:hover{
-  color: white;
-  outline: none;
-  text-shadow: none;
-  background-color: rgb(228, 83, 83); 
-  transition: width ease-in 0.3s;
-}
 .submit{
   flex-grow: 1;
   cursor: pointer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/Exercise.module.scss';
 import { useState } from 'react';
-import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
+import { BsPatchPlus, BsCaretDownFill } from 'react-icons/bs';
 const CurrentExerciseItem = (props) => {
 	//props
 	const { id, exercise, onAdd, onRemove, edit, index, updateArray, sets, reps } = props;
@@ -96,7 +96,7 @@ const CurrentExerciseItem = (props) => {
 				</div>
 			</div>
 			<div className={styles['instructions-container']}>
-				<BsCaretDown
+				<BsCaretDownFill
 					className={toggleInstruction && styles['svg-flipper']}
 					onClick={() => {
 						setToggleInstruction(!toggleInstruction);
