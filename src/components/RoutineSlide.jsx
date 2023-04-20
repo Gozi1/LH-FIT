@@ -57,15 +57,17 @@ const RoutineSlide = (props) => {
 					<div key={routine.name} className={classNames(index)}>
 						{(routinesIndex.current === index || edit === index + 1) && (
 							<h2
-								onClick={() => {
-									edit ? setEdit(null) : setEdit(index + 1);
-								}}
+								
 							>
 								{routine.name}
 							</h2>
 						)}
 						{edit === index + 1 &&
-							routine.enrollments[0].map((enrollment) => (
+            <>
+            <h4 className={styles['see-more']} onClick={() => {
+                      edit ? setEdit(null) : setEdit(index + 1);
+                    }}>- Less Detail</h4>
+							{routine.enrollments[0].map((enrollment) => (
 								<div key={enrollment.id}>
 									<EnrollmentItem
 										exercise={enrollment.exercise}
@@ -78,6 +80,7 @@ const RoutineSlide = (props) => {
 									<br />
 								</div>
 							))}
+              </>}
 						{!edit && (
 							<div className={styles['routine-grid']}>
 								<h2 className={styles['exercise-part']}>Exercise Name</h2>
@@ -92,14 +95,17 @@ const RoutineSlide = (props) => {
 													{enrollment.exercise.name}
 												</p>
 												<p className={styles['weight-part']}>
-													{enrollment.weight}
+													{enrollment.weight<1?0:enrollment.weight}
 												</p>
 												<p className={styles['reps-part']}>{enrollment.reps}</p>
 												<p className={styles['sets-part']}>{enrollment.sets}</p>
 											</>
 										);
-									} else if (i === 4) {
-										return <div>...</div>;
+									} 
+                  if (i === routine.enrollments[0].length - 1) {
+										return <div className={styles['see-more']} onClick={() => {
+                      edit ? setEdit(null) : setEdit(index + 1);
+                    }}>see more ...</div>;
 									}
 								})}
 							</div>

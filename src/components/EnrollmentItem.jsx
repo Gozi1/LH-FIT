@@ -55,7 +55,9 @@ const CurrentEnrollmentItem = (props) => {
 
 	return (
 		<div className={styles['current-exercise-container']}>
+			<h3>{name}</h3>
 			<div className={styles['exercise-positioner']}>
+			
 				<div>
 					<p>Muscle Group : {muscle}</p>
 					<p>Equipment Needed: {equipment}</p>
