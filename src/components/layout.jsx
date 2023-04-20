@@ -6,11 +6,10 @@ export default function Layout({ children }) {
   return (
     <>
     <Head>
-        <title>Create Next App</title>
+        <title>LH-FIT</title>
         <meta name="description" content="Workout generator App" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.svg" />
-       
+        <link rel="icon" href="/logo.svg" />   
       </Head>
       <Navbar />
       <main>{children}</main>
