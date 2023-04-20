@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/Exercise.module.scss';
+import styles2 from '../styles/routines.module.scss';
 import { useState } from 'react';
 import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
 
@@ -55,6 +56,7 @@ const CurrentEnrollmentItem = (props) => {
 
 	return (
 		<div className={styles['current-exercise-container']}>
+			
 			<h3>{name}</h3>
 			<div className={styles['exercise-positioner']}>
 			
@@ -133,10 +135,13 @@ const CurrentEnrollmentItem = (props) => {
 					{instructionHtml}
 				</article>
 			</div>
-			<button onClick={handleClick}>Edit</button>
-			<button onClick={handleSubmit}>Submit</button>
+			<div className={styles2['button-container']}>
+			<button className={styles2['edit']} onClick={handleClick}>Edit</button>
+			 <button className={styles2['submit']} onClick={handleSubmit}>Submit</button>
+			</div>
 		</div>
 	);
+
 };
 
 export default CurrentEnrollmentItem;
