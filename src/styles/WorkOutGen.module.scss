@@ -2,26 +2,39 @@
 
   $border-size: 0.125rem;
   $duration: 250ms;
-  $ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+  $ease: cubic-bezier(0.215, 0.61, 0.505, 1);
   $font-family: monospace;
   $color-primary: white;
-  $color-secondary: black;
-  $color-tertiary: dodgerblue;
+  $color-secondary: blue;
+  $color-tertiary: black;
   $shadow: rgba(0, 0, 0, 0.1);
   $space: 1rem;
 
 .page-layout{
   display: flex;
   flex-direction: column;
-  gap:4rem
+  align-items: center;
+  // gap: 2rem;
+  // height: 100vh;
+  // width: 100vw;
+  // background-color: $color-primary;
+  // font-family: $font-family;
+  // color: $color-tertiary;
+  // text-shadow: $shadow 2px 2px;
+  
 }
 .work-out-gen{
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-40%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 30rem;
+  
   transform-origin: 80% 0%;
   transition: all 0.5s linear;
+  gap: 1rem;
 }
 .shrink{
   transform: scale(0);
@@ -29,13 +42,34 @@
 }
 .work-out-container-difficulty{
   display: flex;
-  width: 35rem;
+  width: 50rem;
   box-shadow: $shadow 4px 4px;
 }
 .work-out-container-type{
   display: flex;
-  width: 35rem;
+  width: 50rem;
   box-shadow: $shadow 4px 4px;
+}
+.work-out-container-type .button::before {
+  content: attr(data-text); 
+  position:fixed;
+  font-size: 1rem;
+ 
+  top:20%;
+  left: -40%;
+  z-index: 10;
+  /* basic styles */
+  width:250px;
+  padding:10px;
+  border-radius:10px;
+  background:$color-primary;
+  color: $color-tertiary;
+  text-align:center;
+
+  display:none; /* hide by default */
+}
+.work-out-container-type .button:hover::before {
+  display:block; /* show on hover */
 }
 .button{
   flex-grow: 1;
@@ -45,17 +79,18 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
-  color: $color-secondary;
+  border: $border-size solid blue;
+  color: $color-tertiary;
   background-color: $color-primary;
   font-size: 1.5rem;
   font-family: $font-family;
   text-shadow: $shadow 2px 2px;
   transition: flex-grow $duration $ease;
+  height: 6rem;
 }
 
 .work-out-container-type .button + button {
-  border-left: $border-size solid black;
+  border-left: $border-size solid blue;
   margin-left: calc($border-size * -1);
 }
 .button:hover,
@@ -82,7 +117,7 @@
 }
 .work-out-container-type:hover  .focus:not(:hover) {
   flex-grow: 1;
-  color: $color-secondary;
+  color: $color-tertiary;
   background-color: $color-primary;
   outline-color: $color-tertiary;
 }
@@ -91,7 +126,7 @@
 }
 
 .work-out-container-difficult .button + button {
-  border-left: $border-size solid black;
+  border-left: $border-size solid blue;
   margin-left: calc($border-size * -1);
 }
 .button:hover,
@@ -108,7 +143,7 @@
 }
 .work-out-container-difficulty:hover  .focus:not(:hover) {
   flex-grow: 1;
-  color: $color-secondary;
+  color: $color-tertiary;
   background-color: $color-primary;
   outline-color: $color-tertiary;
 }
@@ -118,38 +153,10 @@
 
 .work-out-buttons{
   display: flex;
-  width: 35rem;
+  width: 50rem;
   justify-content: center;
 }
-.reset{
-  flex-grow: 1;
-  cursor: pointer;
-  position: relative;
-  padding:
-    calc($space / 1.125)
-    $space
-    $space;
-  border: $border-size solid black;
-  color: $color-secondary;
-  background-color: $color-primary;
-  font-size: 1.5rem;
-  font-family: $font-family;
-  text-shadow: $shadow 2px 2px;
-  
-  transition: width ease-in 0.3s;
-}
 
-
-.reset:active {
-  transform: translateY($border-size);
-}
-.reset:hover{
-  color: white;
-  outline: none;
-  text-shadow: none;
-  background-color: rgb(228, 83, 83); 
-  transition: width ease-in 0.3s;
-}
 .submit{
   flex-grow: 1;
   cursor: pointer;
@@ -158,13 +165,13 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
-  color: $color-secondary;
+  border: $border-size solid blue;
+  color: $color-tertiary;
   background-color: $color-primary;
   font-size: 1.5rem;
   font-family: $font-family;
   text-shadow: $shadow 2px 2px;
-  
+  height: 6rem;
   transition: width ease-in 0.3s;
 }
 .submit:active {
@@ -185,14 +192,14 @@
     calc($space / 1.125)
     $space
     $space;
-  border: $border-size solid black;
-  color: $color-secondary;
+  border: $border-size solid blue;
+  color: $color-tertiary;
   background-color: $color-primary;
   font-size: 1.5rem;
   font-family: $font-family;
   text-shadow: $shadow 2px 2px;
-  width: 35rem;
-  
+  width: 50rem;
+  height: 6rem;
 }
 .work-out-container-muscle:hover{
   background-color: $color-secondary;
