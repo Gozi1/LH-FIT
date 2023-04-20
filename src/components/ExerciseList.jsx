@@ -41,6 +41,10 @@ const ExerciseList = (props) => {
 			setError('Routine name must be less than 50 characters');
 			return;
 		}
+		else if(exercises.length < 3 ){
+			setError('Each routine must have at least 3 exercises');
+			return;
+		}
 		async function postData(url = '', data = {}) {
 			const response = await fetch(url, {
 				method: 'POST',
