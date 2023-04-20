@@ -16,7 +16,7 @@ $space: 1rem;
   font-family: 'Poppins', sans-serif;
   // remove in place of flex box in the exercise list 
   padding: 0 2rem;
-  width: 750px
+  width: 55rem
 }
 .current-exercise-container button{
   z-index: 50;
@@ -62,7 +62,7 @@ $space: 1rem;
     padding: 0;
     font-size: 2rem;
     transition: all ease 0.5s;
-
+    cursor: pointer;
   }
   svg:hover {
     fill:blue
@@ -96,11 +96,11 @@ $space: 1rem;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  input{
-    width: 40em;
+  >input{
+    width: 55rem;
     height:3rem;
     outline: none;
-    border: 1px solid gray;
+    border: 1px solid white;
     border-radius: 5px;
     padding: 0 1rem;
   }
@@ -167,6 +167,14 @@ $space: 1rem;
 }
 .button-container{
   display: flex;
-  width: 50rem;
+  width: 55rem;
   justify-content: center;
+}
+.edit-container{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  input{
+    max-width: 2rem;
+  }
 }

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
 import SearchItem from './SearchItem';
 import useFetchApi from '@/hooks/useFetchApi';
-import { Loading } from '@nextui-org/react';
+import Loading from './Loading';
 import SearchList from './SearchList';
 
 const SearchBar = (props) => {
@@ -64,7 +64,7 @@ const errorFunc = (error) => {
 			</div>
 			
 		</form>
-		{mode === 'LOADING' && <Loading message='awaiting results'></Loading>}
+		{mode === 'LOADING' && <Loading message='awaiting results'/>}
 		
 				{mode === 'SHOW' && 
 					<SearchList exercises ={params.exercises} onAdd = {onAdd} />

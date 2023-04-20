@@ -4,10 +4,19 @@ import { useState } from 'react';
 import { BsPatchPlus, BsCaretDownFill } from 'react-icons/bs';
 const CurrentExerciseItem = (props) => {
 	//props
-	const { id, exercise, onAdd, onRemove, edit, index, updateArray, sets, reps } = props;
+	const {
+		id,
+		exercise,
+		onAdd,
+		onRemove,
+		edit,
+		index,
+		updateArray,
+		sets,
+		reps,
+	} = props;
 	//destructure exercise
-	const { name, muscle, equipment, instructions, weight } =
-		exercise;
+	const { name, muscle, equipment, instructions, weight } = exercise;
 
 	//returns a number list of instructions
 	const instructionHtml = instructions.split(',').map((sentence, index) => {
@@ -44,39 +53,43 @@ const CurrentExerciseItem = (props) => {
 				<div className={styles['set-reps-container']}>
 					{!edit && (
 						<>
-							{weight > -1 && <p>Current Weight : {weight}</p>}
 							<p>Total Sets : {sets}</p>
 							<p>Target Reps : {reps}</p>
+							{weight > -1 && <p>Current Weight : {weight}</p>}
 						</>
 					)}
 					{edit && (
 						<>
-							<p>Total Sets :</p>
-							<input
-								value={sets}
-								onChange={(e) => {
-									//prevents user from entering a negative number
-									if (e.target.value === '-') {
-										updateArray(index, 'sets', 0);
-									} else {
-										updateArray(index, 'sets', e.target.value);
-									}
-								}}
-							/>
-							<p>Target Reps : </p>
-							<input
-								value={reps}
-								onChange={(e) => {
-									//prevents user from entering a negative number
-									if (e.target.value === '-') {
-										updateArray(index, 'reps', 0);
-									} else {
-										updateArray(index, 'reps', e.target.value);
-									}
-								}}
-							/>
+							<div className={styles['edit-container']}>
+								<p>Total Sets :</p>
+								<input
+									value={sets}
+									onChange={(e) => {
+										//prevents user from entering a negative number
+										if (e.target.value === '-') {
+											updateArray(index, 'sets', 0);
+										} else {
+											updateArray(index, 'sets', e.target.value);
+										}
+									}}
+								/>
+							</div>
+							<div className={styles['edit-container']}>
+								<p>Target Reps : </p>
+								<input
+									value={reps}
+									onChange={(e) => {
+										//prevents user from entering a negative number
+										if (e.target.value === '-') {
+											updateArray(index, 'reps', 0);
+										} else {
+											updateArray(index, 'reps', e.target.value);
+										}
+									}}
+								/>
+							</div>
 							{weight > -1 && (
-								<>
+								<div className={styles['edit-container']}>
 									<p>Current Weight : </p>
 									<input
 										value={weight}
@@ -89,7 +102,7 @@ const CurrentExerciseItem = (props) => {
 											}
 										}}
 									/>
-								</>
+								</div>
 							)}
 						</>
 					)}
