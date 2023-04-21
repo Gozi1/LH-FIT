@@ -3,10 +3,12 @@ import EnrollmentItem from './EnrollmentItem';
 import styles from '../styles/routines.module.scss';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import { useState } from 'react';
+import ExerciseItem from './ExerciseItem';
 
 const RoutineSlide = (props) => {
-	const { routines, setEnrollment, routinesIndex, setroutinesIndex } = props;
+	const { routines, routinesIndex, setroutinesIndex } = props;
 	const [edit, setEdit] = useState(null);
+	
 	//Change the index of the current routine
 	const nextSlide = () => {
 		setroutinesIndex((prev) => ({
@@ -69,15 +71,13 @@ const RoutineSlide = (props) => {
                       edit ? setEdit(null) : setEdit(index + 1);
                     }}>- Less Detail</h4>
 							{routine.enrollments[0].map((enrollment) => (
-								<div key={enrollment.id}>
-									<EnrollmentItem
-										exercise={enrollment.exercise}
-										sets={enrollment.sets}
-										reps={enrollment.reps}
-										weight={enrollment.weight}
-										enrollment={enrollment}
-										setEnrollment={setEnrollment}
-									/>
+								<div key={enrollment.exercise.name}>
+								<ExerciseItem
+									exercise={enrollment.exercise}
+									sets={enrollment.sets}
+									reps={enrollment.reps}
+									weight={enrollment.weight}
+								/>
 									<br />
 								</div>
 							))}

@@ -140,6 +140,26 @@ main {
     background-color: gray;
   }
 }
+.success{
+	display: flex;
+  flex-direction: row;
+  gap:1rem;
+  align-items: center;
+	p{
+		color: green;
+	}
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  border: 3px solid green;
+  svg{
+    font-size: 3rem;
+    border-radius: 2rem;
+		fill: green;
+  }
+  svg:hover{
+    background-color: gray;
+  }
+}
 
 // .sign-up-page{
 // 	padding-top: 5rem;
