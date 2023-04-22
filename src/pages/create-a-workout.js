@@ -13,11 +13,11 @@ function HomePage() {
 	const { user, loading } = useGetUser()
   const router = useRouter()
 
-  useEffect(() => {
-    if (!(user || loading)) {
-      router.push('/login')
-    } 
-  }, [user, loading])
+  // useEffect(() => {
+  //   if (!(user || loading)) {
+  //     router.push('/login')
+  //   } 
+  // }, [user, loading])
 
 
 	const [params, setParams] = useState({
@@ -88,9 +88,6 @@ function HomePage() {
 			{mode === 'SHOW' && showResults && (
 				<div className={styles['work-out-search-div']}>
 					<SearchBar
-						exercises={exercises}
-						params={params}
-						setParams={setParams}
 						onAdd={handleAdd}
 					/>
 				</div>

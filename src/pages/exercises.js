@@ -1,44 +1,11 @@
-import React from 'react';
-import { BsList, BsX } from 'react-icons/bs';
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
-import { useCookies } from 'react-cookie';
-import Image from 'next/image';
-import Logo from '../../public/logo.svg';
-import useGetUser from '../hooks/useGetUser';
-
-const navbar = () => {
-	const { reload,push,pathname } = useRouter();
-	const menuRef = useRef();
-	const [cookies, removeCookie] = useCookies(['user_id']);
-	const {user} = useGetUser()
-	const [mobileMenu, setMobileMenu] = useState(false);
-
-	const router = useRouter();
-	// function to logout user
-	const handleLogout = () => {
-		removeCookie('user_id');
-		router.push('/login')
-	};
-	
-	// function to close Nav menu when clicked outside
-	useEffect(() => {
-		let handler = (e) => {
-			if (menuRef.current && !menuRef.current.contains(e.target)) {
-				setMobileMenu(false);
-			}
-		};
-		document.addEventListener('mousedown', handler);
-	}, [mobileMenu]);
-
-	return (
-		<nav className='nav' ref={menuRef}>
-			<div className='mobile-menu'>
-				{!mobileMenu && <BsList onClick={() => setMobileMenu(true)} />}
-				{mobileMenu && <BsX onClick={() => setMobileMenu(false)} />}
-				<p className='mobile-icon'>Menu</p>
-				<svg className='Logo' version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="auto" height="5rem" viewBox="0 0 300.000000 291.000000"
+import React from 'react'
+import SearchBar from '@/components/SearchBar'
+import styles from '../styles/ExercisePage.module.scss';
+const exercises = () => {
+  return (
+    <div className={styles['exercise-page']}>
+     	<svg className={styles['logo']} version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="auto" height="10rem" viewBox="0 0 300.000000 291.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.10, written by Peter Selinger 2001-2011
@@ -304,71 +271,9 @@ c15 12 19 2 6 -18 -5 -8 -12 -8 -26 2 -11 9 -15 18 -10 27 7 10 9 9 12 -5 3
 -506 11z"/>
 </g>
 </svg>
+      <SearchBar/>
+    </div>
+  )
+}
 
-				
-
-				<ul className={mobileMenu ? 'mobile-menu-show' : 'mobile-menu-hide'}>
-					{user && <li>Hello {user}</li>}
-					<li
-						onClick={() => {
-							if(pathname !== '/create-a-workout'){
-								push('/create-a-workout');
-							}
-							else{
-								reload('/create-a-workout')
-							}
-							
-						}}
-					>
-						Create Workout
-					</li>
-					<li
-						onClick={() => {
-							push('/explore');
-						}}
-					>
-						Explore
-					</li>
-					<li
-						onClick={() => {
-							push('/exercises');
-						}}
-					>
-						Exercises
-					</li>
-					{user && (
-						<li
-							onClick={() => {
-								push('/my-routines');
-							}}
-						>
-							My Routines
-						</li>
-					)}
-
-					{!user && (
-						<>
-							<li
-								onClick={() => {
-									push('/login');
-								}}
-							>
-								Login
-							</li>
-							<li
-								onClick={() => {
-									push('/signup');
-								}}
-							>
-								SignUp
-							</li>
-						</>
-					)}
-					{user && <li onClick={handleLogout}>SignOut</li>}
-				</ul>
-			</div>
-		</nav>
-	);
-};
-
-export default navbar;
+export default exercises

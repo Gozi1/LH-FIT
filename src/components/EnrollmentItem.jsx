@@ -2,10 +2,13 @@ import React from 'react';
 import styles from '../styles/Exercise.module.scss';
 import styles2 from '../styles/routines.module.scss';
 import { useState } from 'react';
-import { BsPatchMinus, BsPatchPlus, BsCaretDown } from 'react-icons/bs';
+import {  BsCaretDown,BsLink } from 'react-icons/bs';
+import { useRouter } from 'next/router';
 import Error from './Error';
 import Success from './Success';
 const CurrentEnrollmentItem = (props) => {
+
+	const {push} = useRouter();
 	//props
 	const { id, exercise,enrollment } = props;
 	//destructure exercise
@@ -65,6 +68,7 @@ const CurrentEnrollmentItem = (props) => {
 			<h3>{name}</h3>
 			<div className={styles['exercise-positioner']}>
 				<div>
+				<BsLink onClick={()=>push(`/exercises/${exercise.id}`)}/>
 					<p>Muscle Group : {muscle}</p>
 					<p>Equipment Needed: {equipment}</p>
 				</div>

@@ -41,7 +41,7 @@ const RoutineSlide = (props) => {
 	};
 	return (
 		<div>
-			<h1>Your Routine:</h1>
+			<h1>Routines of the Week</h1>
 			{!edit && (
 				<FaArrowAltCircleLeft
 					className={styles['left-arrow']}

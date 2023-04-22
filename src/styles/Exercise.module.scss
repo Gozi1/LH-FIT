@@ -14,7 +14,7 @@ $space: 1rem;
   flex-direction: column;
   font-size: 1.5rem;
   font-family: 'Poppins', sans-serif;
-
+  overflow: hidden;
   padding: 0 2rem;
   width: 55rem
 }
@@ -180,3 +180,4 @@ $space: 1rem;
     font-size: 1.5rem;
   }
 }
+
