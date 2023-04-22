@@ -2,17 +2,16 @@ import React from 'react';
 import styles from '../styles/Exercise.module.scss';
 import styles2 from '../styles/routines.module.scss';
 import { useState } from 'react';
-import {  BsCaretDown,BsLink } from 'react-icons/bs';
+import { BsCaretDown, BsLink45Deg } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import Error from './Error';
 import Success from './Success';
 const CurrentEnrollmentItem = (props) => {
-
-	const {push} = useRouter();
+	const { push } = useRouter();
 	//props
-	const { id, exercise,enrollment } = props;
+	const { id, exercise, enrollment } = props;
 	//destructure exercise
-	const [enrollments, setEnrollment] = useState({...enrollment});
+	const [enrollments, setEnrollment] = useState({ ...enrollment });
 	const { name, muscle, equipment, instructions } = exercise;
 	const { sets, reps, weight } = enrollment;
 	const [error, setError] = useState(null);
@@ -34,10 +33,9 @@ const CurrentEnrollmentItem = (props) => {
 
 	//make a function that index the key value and the new value and updates the  state array
 	const updateArray = (key, value) => {
-		let newArray = {...enrollments};
+		let newArray = { ...enrollments };
 		newArray[key] = value;
 		setEnrollment(newArray);
-
 	};
 
 	function handleClick() {
@@ -68,7 +66,7 @@ const CurrentEnrollmentItem = (props) => {
 			<h3>{name}</h3>
 			<div className={styles['exercise-positioner']}>
 				<div>
-				<BsLink onClick={()=>push(`/exercises/${exercise.id}`)}/>
+					<BsLink45Deg onClick={() => push(`/exercises/${exercise.id}`)} />
 					<p>Muscle Group : {muscle}</p>
 					<p>Equipment Needed: {equipment}</p>
 				</div>
@@ -82,49 +80,49 @@ const CurrentEnrollmentItem = (props) => {
 					)}
 					{edit && (
 						<>
-						<div className={styles['edit-container']}>
-							<p>Total Sets :</p>
-							<input
-								value={enrollments.sets}
-								onChange={(e) => {
-									//prevents user from entering a negative number
-									if (e.target.value === '-'||e.target.value === '') {
-										updateArray('sets', 0);
-									} else {
-										updateArray('sets', parseInt(e.target.value));
-									}
-								}}
-							/>
+							<div className={styles['edit-container']}>
+								<p>Total Sets :</p>
+								<input
+									value={enrollments.sets}
+									onChange={(e) => {
+										//prevents user from entering a negative number
+										if (e.target.value === '-' || e.target.value === '') {
+											updateArray('sets', 0);
+										} else {
+											updateArray('sets', parseInt(e.target.value));
+										}
+									}}
+								/>
 							</div>
 							<div className={styles['edit-container']}>
-							<p>Target Reps : </p>
-							<input
-								value={enrollments.reps}
-								onChange={(e) => {
-									//prevents user from entering a negative number
-									if (e.target.value === '-'||e.target.value === '') {
-										updateArray('reps', 0);
-									} else {
-										updateArray('reps', parseInt(e.target.value));
-									}
-								}}
-							/>
+								<p>Target Reps : </p>
+								<input
+									value={enrollments.reps}
+									onChange={(e) => {
+										//prevents user from entering a negative number
+										if (e.target.value === '-' || e.target.value === '') {
+											updateArray('reps', 0);
+										} else {
+											updateArray('reps', parseInt(e.target.value));
+										}
+									}}
+								/>
 							</div>
 							{weight > -1 && (
 								<>
-								<div className={styles['edit-container']}>
-									<p>Current Weight : </p>
-									<input
-										value={enrollments.weight}
-										onChange={(e) => {
-											//prevents user from entering a negative number
-											if (e.target.value === '-'||e.target.value === '') {
-												updateArray('weight', 0);
-											} else {
-												updateArray('weight', parseInt(e.target.value));
-											}
-										}}
-									/>
+									<div className={styles['edit-container']}>
+										<p>Current Weight : </p>
+										<input
+											value={enrollments.weight}
+											onChange={(e) => {
+												//prevents user from entering a negative number
+												if (e.target.value === '-' || e.target.value === '') {
+													updateArray('weight', 0);
+												} else {
+													updateArray('weight', parseInt(e.target.value));
+												}
+											}}
+										/>
 									</div>
 								</>
 							)}

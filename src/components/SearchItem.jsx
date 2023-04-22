@@ -10,8 +10,10 @@ const SearchItem = (props) => {
   const {push} = useRouter();
   return (
       <div className={styles['current-search-container']} onClick={() =>onAdd? onAdd(exercise): push(`/exercises/${id}`)}>
+        <div>
         <h4>{name}</h4>
-        <h5>{muscle}</h5>
+        <h5 style={{'color':'grey'}}>{muscle}</h5>
+        </div>
        {onAdd &&<div className={styles['add-button']}>
 				<h1>+</h1>
         </div>}

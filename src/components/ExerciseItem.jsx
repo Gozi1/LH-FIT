@@ -2,22 +2,14 @@ import React from 'react';
 import styles from '../styles/Exercise.module.scss';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import {BsCaretDownFill,BsLink } from 'react-icons/bs';
+import { BsCaretDownFill, BsLink45Deg } from 'react-icons/bs';
 const CurrentExerciseItem = (props) => {
 	//props
-	const {
-		exercise,
-		onAdd,
-		onRemove,
-		edit,
-		index,
-		updateArray,
-		sets,
-		reps,
-	} = props;
+	const { exercise, onAdd, onRemove, edit, index, updateArray, sets, reps } =
+		props;
 	//destructure exercise
-	const { id,name, muscle, equipment, instructions, weight } = exercise;
-	const {push} = useRouter();
+	const { id, name, muscle, equipment, instructions, weight } = exercise;
+	const { push } = useRouter();
 	//returns a number list of instructions
 	const instructionHtml = instructions.split(',').map((sentence, index) => {
 		return (
@@ -35,10 +27,7 @@ const CurrentExerciseItem = (props) => {
 			<div className={styles['exercise-positioner']}>
 				<h3>{name}</h3>
 				{onRemove && (
-					<h1
-						className={styles['exercise-on-remove']}
-						onClick={ onRemove}
-					>
+					<h1 className={styles['exercise-on-remove']} onClick={onRemove}>
 						-
 					</h1>
 				)}
@@ -46,7 +35,7 @@ const CurrentExerciseItem = (props) => {
 
 			<div className={styles['exercise-positioner']}>
 				<div>
-					<BsLink onClick={()=>push(`/exercises/${id}`)}/>
+					<BsLink45Deg onClick={() => push(`/exercises/${id}`)} />
 					<p>Muscle Group : {muscle}</p>
 					<p>Equipment Needed: {equipment}</p>
 				</div>

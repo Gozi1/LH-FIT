@@ -161,25 +161,11 @@ main {
   }
 }
 
-// .sign-up-page{
-// 	padding-top: 5rem;
-// 	width: 100vw;
-// 	height: 100vh;
-// 	position:absolute;
+.T404{
+	font-size:5rem;
+	color: rgb(177, 16, 16)
 	
-// 	background: url('https://images.unsplash.com/photo-1680792563719-288027b2a090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1193&q=80');
-// 	background-color: #1589d6;
-// 	background-size: cover;
-// 	// background-repeat: no-repeat;
-// 	background-attachment: fixed;
-// 	background-blend-mode: color-burn;
-	
-// 	animation: scroll 5s ease-in  alternate infinite;
-// }
-// @keyframes scroll {
-
-// 	100%{
-// 	 background-position:200%;
-//  }
-
-// }
+}
+.T404>a{
+	text-decoration: underline;
+}

@@ -6,7 +6,6 @@ const Transition = ({ children }) => {
 	const variants = {
 		out: {
 			opacity: 0,
-      
 			transition: {
         ease: "easeInOut",
 				duration: 0.75,
@@ -14,7 +13,6 @@ const Transition = ({ children }) => {
 		},
 		in: {
 			opacity: 1,
-			x: 0,
 			transition: {
 				duration: 0.75,
 				delay: 0.4,

@@ -83,33 +83,46 @@ const RoutineSlide = (props) => {
 							))}
               </>}
 						{!edit && (
-							<div className={styles['routine-grid']}>
-								<h2 className={styles['exercise-part']}>Exercise Name</h2>
-								<h2 className={styles['weight-part']}>Weight</h2>
-								<h2 className={styles['reps-part']}>Reps</h2>
-								<h2 className={styles['sets-part']}>Sets</h2>
-								{routine.enrollments[0].map((enrollment, i) => {
-									if (i === routine.enrollments[0].length - 1) {
-										return <div className={styles['see-more']} onClick={() => {
-                      edit ? setEdit(null) : setEdit(index + 1);
-                    }}>see more ...</div>;
-									}
-									if (i < 3) {
-										return (
-											<>
-												<p className={styles['exercise-part']}>
-													{enrollment.exercise.name}
-												</p>
-												<p className={styles['weight-part']}>
-													{enrollment.weight<1?0:enrollment.weight}
-												</p>
-												<p className={styles['reps-part']}>{enrollment.reps}</p>
-												<p className={styles['sets-part']}>{enrollment.sets}</p>
-											</>
-										);
-									} 
-								})}
-							</div>
+							<table className={styles['routine-grid']}>
+							<tr>
+								<th className={styles['exercise-part']}>Exercise Name</th>
+								<th className={styles['weight-part']}>Weight</th>
+								<th className={styles['reps-part']}>Reps</th>
+								<th className={styles['sets-part']}>Sets</th>
+							</tr>
+							{routine.enrollments[0].map((enrollment, i) => {
+								if (i === routine.enrollments[0].length - 1) {
+									return (
+										<tr
+											className={styles['see-more']}
+											onClick={() => {
+												edit ? setEdit(null) : setEdit(index + 1);
+											}}
+										>
+											see more ...
+										</tr>
+									);
+								}
+								if (i < 3) {
+									return (
+										<tr>
+											<td className={styles['exercise-part']}>
+												{enrollment.exercise.name}
+											</td>
+											<td className={styles['weight-part']}>
+												{enrollment.weight < 1 ? 0 : enrollment.weight}
+											</td>
+											<td className={styles['reps-part']}>
+												{enrollment.reps}
+											</td>
+											<td className={styles['sets-part']}>
+												{enrollment.sets}
+											</td>
+										</tr>
+									);
+								}
+							})}
+						</table>
 						)}
 					</div>
 				))
