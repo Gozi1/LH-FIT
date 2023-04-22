@@ -14,7 +14,7 @@ $space: 1rem;
   flex-direction: column;
   font-size: 1.5rem;
   font-family: 'Poppins', sans-serif;
-
+  overflow: hidden;
   padding: 0 2rem;
   width: 55rem
 }
@@ -28,26 +28,29 @@ $space: 1rem;
 
 .current-exercise-container article{
   transition: all 0.3s ease-in;
-
 }
 .instruction-hide{
   visibility: hidden;
   opacity: 0;
   max-height: 1px;
-  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 2s linear;
 }
 .instruction-show{
   visibility: visible;
   opacity: 1;
-  max-height: 700px;
-  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 1s ease-in;
+  max-height: 100rem;
+  transition: visibility 0s linear 0.5s, opacity 0.5s,max-height 2s linear;
 }
 .exercise-positioner{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
   margin: 0.2rem 0;
+  svg:hover{
+    fill:blue;
+    color:blue;
+    cursor: pointer;
+  }
 }
 .instructions-container{
   border-top: 2px solid white;
@@ -177,5 +180,7 @@ $space: 1rem;
   gap: 1rem;
   input{
     max-width: 2rem;
+    font-size: 1.5rem;
   }
 }
+

@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import EnrollmentItem from './EnrollmentItem';
-import styles from '../styles/routines.module.scss';
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
-import RoutineSlide from './RoutineSlide';
+import RoutineSlide from './MyRoutineSlide';
 const MyRoutinesPage = () => {
 	const [routines, setRoutines] = useState([]);
-	const [enrollment, setEnrollment] = useState([]);
+	
 	const [loading, setLoading] = useState(true);
 	const [routinesIndex, setroutinesIndex] = useState({});
 
@@ -45,7 +42,7 @@ const MyRoutinesPage = () => {
 					};
 				});
 
-				console.log(mergedData);
+				// console.log(mergedData);
 
 				setRoutines(mergedData);
 				setroutinesIndex({ current: 0, next: 1, prev: mergedData.length - 1 });
@@ -65,7 +62,6 @@ const MyRoutinesPage = () => {
 			<RoutineSlide
 				routines={routines}
 				routinesIndex={routinesIndex}
-				setEnrollment={setEnrollment}
 				setroutinesIndex={setroutinesIndex}
 			/>
 		</div>

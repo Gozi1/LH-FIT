@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ExerciseItem from './ExerciseItem';
-
+import ExploreRoutineSlide from './ExploreRoutineSlide';
 const ExplorePage = () => {
 
   const [routines, setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [routinesIndex, setroutinesIndex] = useState({});
   const adminID = 1;
 
 
@@ -37,7 +36,7 @@ const ExplorePage = () => {
         });
         
         setRoutines(mergedData);
-        
+        setroutinesIndex({ current: 0, next: 1, prev: mergedData.length - 1 });
       }
     }
 
@@ -53,26 +52,10 @@ const ExplorePage = () => {
   
   return(
     <div>
-      <h1>Explore:</h1>
-
-        {routines.map((routine) => (
-          <div key={routine.name}>
-            <h2>Routine Name: {routine.name}</h2>
-            <h4>Created at: {routine.createdAt}</h4>
-            <h4>Created by: {routine.user.name}</h4>
-              {routine.enrollments[0].map((enrollment) => (
-                <div key={enrollment.exercise.name}>
-                  <ExerciseItem
-                    exercise={enrollment.exercise}
-                    sets={enrollment.sets}
-                    reps={enrollment.reps}
-                    weight={enrollment.weight}
-                  />
-                <br />
-                </div>   
-              ))}
-          </div>
-        )).reverse()}
+    
+        <ExploreRoutineSlide routines={routines}
+				routinesIndex={routinesIndex}
+				setroutinesIndex={setroutinesIndex} />
 
       </div>
   );

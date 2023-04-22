@@ -3,10 +3,12 @@ import EnrollmentItem from './EnrollmentItem';
 import styles from '../styles/routines.module.scss';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import { useState } from 'react';
+import ExerciseItem from './ExerciseItem';
 
 const RoutineSlide = (props) => {
-	const { routines, setEnrollment, routinesIndex, setroutinesIndex } = props;
+	const { routines, routinesIndex, setroutinesIndex } = props;
 	const [edit, setEdit] = useState(null);
+
 	//Change the index of the current routine
 	const nextSlide = () => {
 		setroutinesIndex((prev) => ({
@@ -39,7 +41,7 @@ const RoutineSlide = (props) => {
 	};
 	return (
 		<div>
-			<h1>Your Routine:</h1>
+			<h1>Routines of the Week</h1>
 			{!edit && (
 				<FaArrowAltCircleLeft
 					className={styles['left-arrow']}
@@ -56,60 +58,72 @@ const RoutineSlide = (props) => {
 				.map((routine, index) => (
 					<div key={routine.name} className={classNames(index)}>
 						{(routinesIndex.current === index || edit === index + 1) && (
-							<h2
-								
-							>
-								{routine.name}
-							</h2>
+							<h2>{routine.name}</h2>
 						)}
-						{edit === index + 1 &&
-            <>
-						
-            <h4 className={styles['see-more']} onClick={() => {
-                      edit ? setEdit(null) : setEdit(index + 1);
-                    }}>- Less Detail</h4>
-							{routine.enrollments[0].map((enrollment) => (
-								<div key={enrollment.id}>
-									<EnrollmentItem
-										exercise={enrollment.exercise}
-										sets={enrollment.sets}
-										reps={enrollment.reps}
-										weight={enrollment.weight}
-										enrollment={enrollment}
-										setEnrollment={setEnrollment}
-									/>
-									<br />
-								</div>
-							))}
-              </>}
+						{edit === index + 1 && (
+							<>
+								<h4
+									className={styles['see-more']}
+									onClick={() => {
+										edit ? setEdit(null) : setEdit(index + 1);
+									}}
+								>
+									- Less Detail
+								</h4>
+								{routine.enrollments[0].map((enrollment) => (
+									<div key={enrollment.exercise.name}>
+										<ExerciseItem
+											exercise={enrollment.exercise}
+											sets={enrollment.sets}
+											reps={enrollment.reps}
+											weight={enrollment.weight}
+										/>
+										<br />
+									</div>
+								))}
+							</>
+						)}
 						{!edit && (
-							<div className={styles['routine-grid']}>
-								<h2 className={styles['exercise-part']}>Exercise Name</h2>
-								<h2 className={styles['weight-part']}>Weight</h2>
-								<h2 className={styles['reps-part']}>Reps</h2>
-								<h2 className={styles['sets-part']}>Sets</h2>
+							<table className={styles['routine-grid']}>
+								<tr>
+									<th className={styles['exercise-part']}>Exercise Name</th>
+									<th className={styles['weight-part']}>Weight</th>
+									<th className={styles['reps-part']}>Reps</th>
+									<th className={styles['sets-part']}>Sets</th>
+								</tr>
 								{routine.enrollments[0].map((enrollment, i) => {
 									if (i === routine.enrollments[0].length - 1) {
-										return <div className={styles['see-more']} onClick={() => {
-                      edit ? setEdit(null) : setEdit(index + 1);
-                    }}>see more ...</div>;
+										return (
+											<tr
+												className={styles['see-more']}
+												onClick={() => {
+													edit ? setEdit(null) : setEdit(index + 1);
+												}}
+											>
+												see more ...
+											</tr>
+										);
 									}
 									if (i < 3) {
 										return (
-											<>
-												<p className={styles['exercise-part']}>
+											<tr>
+												<td className={styles['exercise-part']}>
 													{enrollment.exercise.name}
-												</p>
-												<p className={styles['weight-part']}>
-													{enrollment.weight<1?0:enrollment.weight}
-												</p>
-												<p className={styles['reps-part']}>{enrollment.reps}</p>
-												<p className={styles['sets-part']}>{enrollment.sets}</p>
-											</>
+												</td>
+												<td className={styles['weight-part']}>
+													{enrollment.weight < 1 ? 0 : enrollment.weight}
+												</td>
+												<td className={styles['reps-part']}>
+													{enrollment.reps}
+												</td>
+												<td className={styles['sets-part']}>
+													{enrollment.sets}
+												</td>
+											</tr>
 										);
-									} 
+									}
 								})}
-							</div>
+							</table>
 						)}
 					</div>
 				))

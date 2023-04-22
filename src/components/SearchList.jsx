@@ -8,8 +8,8 @@ const SearchList = (props) => {
 					{exercises.map((exercise) => (
 						<SearchItem
 							key={exercise.name}
-							name={exercise.name}
-							onAdd={() => onAdd(exercise)}
+							exercise={exercise}
+							onAdd={onAdd}
 						/>
 					))}
 			</div>

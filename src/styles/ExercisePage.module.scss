@@ -1,0 +1,41 @@
+.exercise-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80rem;
+  gap:2rem
+}
+.logo{
+    font-size: 20rem;
+    
+}
+.name{
+  font-size: 4rem;
+  width: 100%;
+  text-align: left;
+}
+.muscle{
+  font-size: 2rem;
+  width: 100%;
+  text-align: left;  
+}
+.difficulty{
+  color:gray;
+  width: 100%;
+  text-align: left;  
+}
+.instruction-heading{
+  font-size: 3rem;
+  width: 100%;
+  text-align: left;  
+}
+.instruction-container{
+    text-align: left; 
+    
+    p{
+      font-size: 1.5rem;
+      font-family:monospace;
+      
+    }
+}
