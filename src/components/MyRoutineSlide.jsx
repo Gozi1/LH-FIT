@@ -1,7 +1,7 @@
 import React from 'react';
 import EnrollmentItem from './EnrollmentItem';
 import styles from '../styles/routines.module.scss';
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';
 import { useState } from 'react';
 
 const RoutineSlide = (props) => {
@@ -42,13 +42,13 @@ const RoutineSlide = (props) => {
 		<div>
 			<h1>My Routines</h1>
 			{!edit && (
-				<FaArrowAltCircleLeft
+				<BsFillCaretLeftFill
 					className={styles['left-arrow']}
 					onClick={prevSlide}
 				/>
 			)}
 			{!edit && (
-				<FaArrowAltCircleRight
+				<BsFillCaretRightFill
 					className={styles['right-arrow']}
 					onClick={nextSlide}
 				/>
