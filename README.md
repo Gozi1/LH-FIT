@@ -2,10 +2,12 @@
 
 LH-FIT is a dynamic workout generator application that takes in user input to create a workout depending on experience level, training type, and muscle group.
 Once signed in users can save their workouts for later, edit the sets, reps, and weight used. 
+## Preview
+![](/public/LH-Fit-Preview.gif)
 
 ## Getting Started
 
-Please initally navigate to this repo ->     clone and follow the read me instructions in order to run the server containing our database.
+Please initally navigate to this repo -> [LHFIT-Api](https://github.com/william-li0128/LH-FIT_API) clone and follow the read me instructions in order to run the server containing our database.
 
  # Within this repository/terminal
 
